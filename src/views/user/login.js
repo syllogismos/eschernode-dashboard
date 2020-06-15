@@ -14,8 +14,8 @@ const validatePassword = (value) => {
   let error;
   if (!value) {
     error = 'Please enter your password';
-  } else if (value.length < 4) {
-    error = 'Value must be longer than 3 characters';
+  } else if (value.length < 7) {
+    error = 'Password must be longer than 6 characters';
   }
   return error;
 };
@@ -31,8 +31,8 @@ const validateEmail = (value) => {
 };
 
 const Login = ({ history, loading, error, loginUserAction }) => {
-  const [email] = useState('demo@gogo.com');
-  const [password] = useState('gogo123');
+  const [email] = useState('');
+  const [password] = useState('');
 
   useEffect(() => {
     if (error) {
