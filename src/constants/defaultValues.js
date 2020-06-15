@@ -14,17 +14,18 @@ export const localeOptions = [
 ];
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyBBksq-Asxq2M4Ot-75X19IyrEYJqNBPcg',
-  authDomain: 'gogo-react-login.firebaseapp.com',
-  databaseURL: 'https://gogo-react-login.firebaseio.com',
-  projectId: 'gogo-react-login',
-  storageBucket: 'gogo-react-login.appspot.com',
-  messagingSenderId: '216495999563',
+  apiKey: 'AIzaSyC-SE7tpz3EDP9Jc8r0inKkC7da-cYWn80',
+  authDomain: 'eschernode.firebaseapp.com',
+  databaseURL: 'https://eschernode.firebaseio.com',
+  projectId: 'eschernode',
+  storageBucket: 'eschernode.appspot.com',
+  messagingSenderId: '256191929846',
+  appId: '1:256191929846:web:94887cb6f569c398457bd7',
+  measurementId: 'G-2EPXWR3M21',
 };
 
 export const searchPath = '#';
 export const servicePath = 'https://api.coloredstrategies.com';
-
 
 export const themeColorStorageKey = '__theme_selected_color';
 export const isMultiColorActive = true;
