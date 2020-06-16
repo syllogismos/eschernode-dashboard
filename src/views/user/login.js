@@ -2,13 +2,21 @@ import React, { useEffect } from 'react';
 import { Row, Card, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 
+import { Redirect } from 'react-router-dom';
+
 import { NotificationManager } from '../../components/common/react-notifications';
 
 import { loginUserTwitter } from '../../redux/actions';
 import { Colxx } from '../../components/common/CustomBootstrap';
 import IntlMessages from '../../helpers/IntlMessages';
 
-const Login = ({ history, loading, error, loginUserTwitterAction }) => {
+const Login = ({
+  history,
+  loading,
+  error,
+  loginUserTwitterAction,
+  loginUser,
+}) => {
   useEffect(() => {
     if (error) {
       NotificationManager.warning(error, 'Login Error', 3000, null, null, '');
@@ -21,7 +29,9 @@ const Login = ({ history, loading, error, loginUserTwitterAction }) => {
     }
   };
 
-  return (
+  return loginUser ? (
+    <Redirect to={{ pathname: '/app' }} />
+  ) : (
     <Row className="h-100">
       <Colxx xxs="12" md="10" className="mx-auto my-auto">
         <Card className="auth-card">
@@ -56,8 +66,8 @@ const Login = ({ history, loading, error, loginUserTwitterAction }) => {
   );
 };
 const mapStateToProps = ({ authUser }) => {
-  const { loading, error } = authUser;
-  return { loading, error };
+  const { loading, error, user: loginUser } = authUser;
+  return { loading, error, loginUser };
 };
 
 export default connect(mapStateToProps, {

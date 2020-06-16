@@ -5,15 +5,15 @@ import UserLayout from '../../layout/UserLayout';
 const Login = React.lazy(() =>
   import(/* webpackChunkName: "user-login" */ './login')
 );
-const Register = React.lazy(() =>
-  import(/* webpackChunkName: "user-register" */ './register')
-);
-const ForgotPassword = React.lazy(() =>
-  import(/* webpackChunkName: "user-forgot-password" */ './forgot-password')
-);
-const ResetPassword = React.lazy(() =>
-  import(/* webpackChunkName: "user-reset-password" */ './reset-password')
-);
+// const Register = React.lazy(() =>
+//   import(/* webpackChunkName: "user-register" */ './register')
+// );
+// const ForgotPassword = React.lazy(() =>
+//   import(/* webpackChunkName: "user-forgot-password" */ './forgot-password')
+// );
+// const ResetPassword = React.lazy(() =>
+//   import(/* webpackChunkName: "user-reset-password" */ './reset-password')
+// );
 
 const User = ({ match }) => {
   return (
@@ -25,7 +25,7 @@ const User = ({ match }) => {
             path={`${match.url}/login`}
             render={(props) => <Login {...props} />}
           />
-          <Route
+          {/* <Route
             path={`${match.url}/register`}
             render={(props) => <Register {...props} />}
           />
@@ -36,7 +36,7 @@ const User = ({ match }) => {
           <Route
             path={`${match.url}/reset-password`}
             render={(props) => <ResetPassword {...props} />}
-          />
+          /> */}
           <Redirect to="/error" />
         </Switch>
       </Suspense>
