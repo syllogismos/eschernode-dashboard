@@ -107,7 +107,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({ authUser, settings }) => {
-  const { user: loginUser } = authUser;
+  const { twitterUser: loginUser } = authUser;
   const { locale } = settings;
   return { loginUser, locale };
 };

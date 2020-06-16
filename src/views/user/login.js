@@ -66,7 +66,7 @@ const Login = ({
   );
 };
 const mapStateToProps = ({ authUser }) => {
-  const { loading, error, user: loginUser } = authUser;
+  const { loading, error, twitterUser: loginUser } = authUser;
   return { loading, error, loginUser };
 };
 
