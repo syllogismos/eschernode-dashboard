@@ -21,6 +21,7 @@ module.exports = {
   'user.forgot-password-question': '¿Contraseña olvidada?',
   'user.fullname': 'Nombre completo',
   'user.login-button': 'INICIAR SESIÓN',
+  'user.login-button-twitter': 'LOGIN USING TWITTER',
   'user.register-button': 'REGISTRO',
   'user.reset-password-button': 'REINICIAR',
   'user.buy': 'COMPRAR',

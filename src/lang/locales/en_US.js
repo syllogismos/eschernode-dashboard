@@ -21,6 +21,7 @@ module.exports = {
   'user.forgot-password-question': 'Forget password?',
   'user.fullname': 'Full Name',
   'user.login-button': 'LOGIN',
+  'user.login-button-twitter': 'LOGIN USING TWITTER',
   'user.register-button': 'REGISTER',
   'user.reset-password-button': 'RESET',
   'user.buy': 'BUY',
