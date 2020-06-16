@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Row, Card, CardTitle, Button } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { Colxx } from '../components/common/CustomBootstrap';
 import IntlMessages from '../helpers/IntlMessages';
 
@@ -24,13 +24,15 @@ const Error = () => {
             <Colxx xxs="12" md="10" className="mx-auto my-auto">
               <Card className="auth-card">
                 <div className="position-relative image-side ">
-                  <p className="text-white h2">MAGIC IS IN THE DETAILS</p>
-                  <p className="white mb-0">Yes, it is indeed!</p>
+                  <p className="text-white h2">ESCHERNODE</p>
+                  <p className="white mb-0">
+                    Messaging Automation Platform for Social Media Infuencers
+                  </p>
                 </div>
                 <div className="form-side">
-                  <NavLink to="/" className="white">
+                  {/* <NavLink to="/" className="white">
                     <span className="logo-single" />
-                  </NavLink>
+                  </NavLink> */}
                   <CardTitle className="mb-4">
                     <IntlMessages id="pages.error-title" />
                   </CardTitle>
