@@ -1,7 +1,7 @@
 {
-  "name": "gogo-react",
+  "name": "eschernode",
   "version": "5.0.0",
-  "description": "Gogo - React Bootstrap 4 Admin Dashboard Template",
+  "description": "Eschernode - Messaging Automation",
   "private": true,
   "dependencies": {
     "@glidejs/glide": "^3.4.1",

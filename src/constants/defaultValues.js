@@ -29,7 +29,7 @@ export const servicePath = 'https://api.coloredstrategies.com';
 
 export const themeColorStorageKey = '__theme_selected_color';
 export const isMultiColorActive = false;
-export const defaultColor = 'light.purplemonster';
+export const defaultColor = 'light.greenmoss';
 export const isDarkSwitchActive = true;
 export const defaultDirection = 'ltr';
 export const themeRadiusStorageKey = '__theme_radius';
