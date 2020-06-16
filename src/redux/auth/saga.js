@@ -129,6 +129,7 @@ function* logout({ payload }) {
   try {
     yield call(logoutAsync, history);
     localStorage.removeItem('user_id');
+    localStorage.removeItem('twitter_user');
   } catch (error) {}
 }
 

@@ -19,6 +19,7 @@ import {
 
 const INIT_STATE = {
   user: localStorage.getItem('user_id'),
+  twitterUser: JSON.parse(localStorage.getItem('twitter_user')),
   forgotUserMail: '',
   newPassword: '',
   resetPasswordCode: '',
