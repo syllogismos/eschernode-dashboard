@@ -15,7 +15,7 @@ const getColor = () => {
 };
 
 const TopnavDarkSwitch = () => {
-  const [switchChecked, setSwitchChecked] = useState(false);
+  const [switchChecked, setSwitchChecked] = useState(true);
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   useEffect(() => {
