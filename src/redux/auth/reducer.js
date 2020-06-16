@@ -43,7 +43,13 @@ export default (state = INIT_STATE, action) => {
     case LOGIN_USER_TWITTER:
       return { ...state, loading: true, error: '' };
     case LOGIN_USER_TWITTER_SUCCESS:
-      return { ...state, loading: false, user: action.payload.uid, error: '' };
+      return {
+        ...state,
+        loading: false,
+        user: action.payload.uid,
+        twitterUser: action.payload,
+        error: '',
+      };
     case LOGIN_USER_TWITTER_ERROR:
       console.log(action);
       return {

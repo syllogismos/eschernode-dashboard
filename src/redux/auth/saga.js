@@ -70,8 +70,7 @@ function* loginWithTwitter({ payload }) {
     if (!loginUserTwitter.message) {
       localStorage.setItem('user_id', loginUserTwitter.user.uid);
       localStorage.setItem('twitter_user', JSON.stringify(loginUserTwitter));
-      console.log(loginUserTwitter);
-      yield put(loginUserTwitterSuccess(loginUserTwitter.user));
+      yield put(loginUserTwitterSuccess(loginUserTwitter));
       history.push('/');
     } else {
       yield put(loginUserTwitterError(loginUserTwitter.message));
