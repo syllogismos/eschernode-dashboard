@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import { NotificationManager } from '../../components/common/react-notifications';
 
-import { loginUser } from '../../redux/actions';
+import { loginUser, loginUserTwitter } from '../../redux/actions';
 import { Colxx } from '../../components/common/CustomBootstrap';
 import IntlMessages from '../../helpers/IntlMessages';
 
@@ -30,9 +30,15 @@ const validateEmail = (value) => {
   return error;
 };
 
-const Login = ({ history, loading, error, loginUserAction }) => {
-  const [email] = useState('');
-  const [password] = useState('');
+const Login = ({
+  history,
+  loading,
+  error,
+  loginUserAction,
+  loginUserTwitterAction,
+}) => {
+  const [email] = useState('anilkaraka@outlook.com');
+  const [password] = useState('demo1428');
 
   useEffect(() => {
     if (error) {
@@ -45,6 +51,12 @@ const Login = ({ history, loading, error, loginUserAction }) => {
       if (values.email !== '' && values.password !== '') {
         loginUserAction(values, history);
       }
+    }
+  };
+
+  const onUserLoginTwitter = (values) => {
+    if (!loading) {
+      loginUserTwitterAction(values, history);
     }
   };
 
@@ -145,4 +157,5 @@ const mapStateToProps = ({ authUser }) => {
 
 export default connect(mapStateToProps, {
   loginUserAction: loginUser,
+  loginUserTwitterAction: loginUserTwitter,
 })(Login);

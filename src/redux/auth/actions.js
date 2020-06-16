@@ -12,6 +12,9 @@ import {
   RESET_PASSWORD,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_ERROR,
+  LOGIN_USER_TWITTER,
+  LOGIN_USER_TWITTER_SUCCESS,
+  LOGIN_USER_TWITTER_ERROR,
 } from '../actions';
 
 export const loginUser = (user, history) => ({
@@ -24,6 +27,21 @@ export const loginUserSuccess = (user) => ({
 });
 export const loginUserError = (message) => ({
   type: LOGIN_USER_ERROR,
+  payload: { message },
+});
+
+export const loginUserTwitter = (user, history) => ({
+  type: LOGIN_USER_TWITTER,
+  payload: { user, history },
+});
+
+export const loginUserTwitterSuccess = (user) => ({
+  type: LOGIN_USER_TWITTER_SUCCESS,
+  payload: user,
+});
+
+export const loginUserTwitterError = (message) => ({
+  type: LOGIN_USER_TWITTER_ERROR,
   payload: { message },
 });
 

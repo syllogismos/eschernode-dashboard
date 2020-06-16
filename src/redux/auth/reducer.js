@@ -12,6 +12,9 @@ import {
   RESET_PASSWORD,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_ERROR,
+  LOGIN_USER_TWITTER,
+  LOGIN_USER_TWITTER_SUCCESS,
+  LOGIN_USER_TWITTER_ERROR,
 } from '../actions';
 
 const INIT_STATE = {
@@ -35,6 +38,18 @@ export default (state = INIT_STATE, action) => {
         loading: false,
         user: '',
         error: action.payload.message,
+      };
+    case LOGIN_USER_TWITTER:
+      return { ...state, loading: true, error: '' };
+    case LOGIN_USER_TWITTER_SUCCESS:
+      return { ...state, loading: false, user: action.payload.uid, error: '' };
+    case LOGIN_USER_TWITTER_ERROR:
+      console.log(action);
+      return {
+        ...state,
+        loading: false,
+        user: '',
+        error: action.payload.message.message,
       };
     case FORGOT_PASSWORD:
       return { ...state, loading: true, error: '' };

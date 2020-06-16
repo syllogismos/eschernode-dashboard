@@ -1,11 +1,13 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { auth } from '../../helpers/Firebase';
+
+import { auth, twitterAuthProvider } from '../../helpers/Firebase';
 import {
   LOGIN_USER,
   REGISTER_USER,
   LOGOUT_USER,
   FORGOT_PASSWORD,
   RESET_PASSWORD,
+  LOGIN_USER_TWITTER,
 } from '../actions';
 
 import {
@@ -17,6 +19,8 @@ import {
   forgotPasswordError,
   resetPasswordSuccess,
   resetPasswordError,
+  loginUserTwitterSuccess,
+  loginUserTwitterError,
 } from './actions';
 
 export function* watchLoginUser() {
@@ -43,6 +47,37 @@ function* loginWithEmailPassword({ payload }) {
     }
   } catch (error) {
     yield put(loginUserError(error));
+  }
+}
+
+export function* watchLoginUserTwitter() {
+  yield takeEvery(LOGIN_USER_TWITTER, loginWithTwitter);
+}
+
+const loginWithTwitterAsync = async (provider) =>
+  await auth
+    .signInWithPopup(provider)
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* loginWithTwitter({ payload }) {
+  const { history } = payload;
+  try {
+    const loginUserTwitter = yield call(
+      loginWithTwitterAsync,
+      twitterAuthProvider
+    );
+    if (!loginUserTwitter.message) {
+      localStorage.setItem('user_id', loginUserTwitter.user.uid);
+      localStorage.setItem('twitter_user', JSON.stringify(loginUserTwitter));
+      console.log(loginUserTwitter);
+      yield put(loginUserTwitterSuccess(loginUserTwitter.user));
+      history.push('/');
+    } else {
+      yield put(loginUserTwitterError(loginUserTwitter.message));
+    }
+  } catch (error) {
+    yield put(loginUserTwitterError(error));
   }
 }
 
@@ -158,5 +193,6 @@ export default function* rootSaga() {
     fork(watchRegisterUser),
     fork(watchForgotPassword),
     fork(watchResetPassword),
+    fork(watchLoginUserTwitter),
   ]);
 }
