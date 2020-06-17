@@ -1,8 +1,9 @@
 import React from 'react';
 import { Row } from 'reactstrap';
-import IntlMessages from '../../../helpers/IntlMessages';
 import { Colxx, Separator } from '../../../components/common/CustomBootstrap';
+import ProfileCard from '../../../components/profile/ProfileCard';
 import Breadcrumb from '../../../containers/navs/Breadcrumb';
+import KeysCard from '../../../containers/profile/keyscard';
 
 const Settings = ({ match }) => (
   <>
@@ -13,9 +14,14 @@ const Settings = ({ match }) => (
       </Colxx>
     </Row>
     <Row>
-      <Colxx xxs="12" className="mb-4">
+      <Colxx lg="5" xl="4" xxs="12" className="col-left">
         <p>
-          <IntlMessages id="menu.settings" />
+          <ProfileCard />
+        </p>
+      </Colxx>
+      <Colxx lg="7" xxs="12" className="mb-4">
+        <p>
+          <KeysCard />
         </p>
       </Colxx>
     </Row>
