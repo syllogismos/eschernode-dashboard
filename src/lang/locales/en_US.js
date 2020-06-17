@@ -51,6 +51,7 @@ module.exports = {
   'menu.filter': 'Filter Your Followers',
   'menu.custom': 'Custom Filters',
   'menu.new.campaign': 'Create New Campaign',
+  'menu.settings': 'Settings',
 
   /* 04.Error Page */
   'pages.error-title': 'Ooops... looks like an error occurred!',

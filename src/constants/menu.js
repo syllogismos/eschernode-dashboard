@@ -52,7 +52,7 @@ const data = [
     id: 'profile',
     icon: 'iconsminds-decrase-inedit',
     label: 'menu.profile',
-    to: '/app/blank-page',
+    to: '/app/profile/settings',
   },
   {
     id: 'docs',

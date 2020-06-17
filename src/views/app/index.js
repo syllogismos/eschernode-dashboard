@@ -18,6 +18,10 @@ const Campaigns = React.lazy(() =>
   import(/* webpackChunkName: "views-campaigns" */ './campaigns')
 );
 
+const Profile = React.lazy(() =>
+  import(/* webpackChunkName: "views-profile" */ './profile')
+);
+
 const App = ({ match }) => {
   return (
     <AppLayout>
@@ -40,6 +44,10 @@ const App = ({ match }) => {
             <Route
               path={`${match.url}/campaigns`}
               render={(props) => <Campaigns {...props} />}
+            />
+            <Route
+              path={`${match.url}/profile`}
+              render={(props) => <Profile {...props} />}
             />
             <Route
               path={`${match.url}/blank-page`}
