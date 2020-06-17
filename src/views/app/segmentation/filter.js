@@ -3,6 +3,7 @@ import { Row } from 'reactstrap';
 import IntlMessages from '../../../helpers/IntlMessages';
 import { Colxx, Separator } from '../../../components/common/CustomBootstrap';
 import Breadcrumb from '../../../containers/navs/Breadcrumb';
+import FilterContainer from '../../../containers/segmentation/FilterContainer';
 
 const Filter = ({ match }) => (
   <>
@@ -13,10 +14,8 @@ const Filter = ({ match }) => (
       </Colxx>
     </Row>
     <Row>
-      <Colxx xxs="12" className="mb-4">
-        <p>
-          <IntlMessages id="menu.filter" />
-        </p>
+      <Colxx xxs="12">
+        <FilterContainer />
       </Colxx>
     </Row>
   </>

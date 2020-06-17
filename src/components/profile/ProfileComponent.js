@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Card, CardBody, CardImg } from 'reactstrap';
 import { Colxx } from '../common/CustomBootstrap';
 
-const ProfileCard = ({ twitterUser }) => {
+const ProfileComponent = ({ twitterUser }) => {
   const profileInfo = twitterUser.additionalUserInfo.profile;
   const profileImageURL = profileInfo.profile_image_url.replace(
     'normal',
@@ -58,4 +58,4 @@ const mapStateToProps = ({ authUser }) => {
   return { twitterUser };
 };
 
-export default connect(mapStateToProps, {})(ProfileCard);
+export default connect(mapStateToProps, {})(ProfileComponent);

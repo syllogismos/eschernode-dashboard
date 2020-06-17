@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row } from 'reactstrap';
 import { Colxx, Separator } from '../../../components/common/CustomBootstrap';
-import ProfileCard from '../../../components/profile/ProfileCard';
+import ProfileComponent from '../../../components/profile/ProfileComponent';
 import Breadcrumb from '../../../containers/navs/Breadcrumb';
-import KeysCard from '../../../containers/profile/keyscard';
+import KeysContainer from '../../../containers/profile/KeysContainer';
 
 const Settings = ({ match }) => (
   <>
@@ -16,12 +16,12 @@ const Settings = ({ match }) => (
     <Row>
       <Colxx lg="5" xl="4" xxs="12" className="col-left">
         <p>
-          <ProfileCard />
+          <ProfileComponent />
         </p>
       </Colxx>
       <Colxx lg="7" xxs="12" className="mb-4">
         <p>
-          <KeysCard />
+          <KeysContainer />
         </p>
       </Colxx>
     </Row>

@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import { Formik, Form, Field } from 'formik';
 
-const KeysCard = () => {
+const KeysContainer = () => {
   const [api_key] = useState('');
   const [api_secret] = useState('');
   const [access_token] = useState('');
@@ -72,4 +72,4 @@ const KeysCard = () => {
   );
 };
 
-export default KeysCard;
+export default KeysContainer;

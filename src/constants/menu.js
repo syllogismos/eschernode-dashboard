@@ -16,19 +16,19 @@ const data = [
     id: 'segmentation',
     icon: 'iconsminds-filter-2',
     label: 'menu.segmentation',
-    to: '/app/segmentation',
-    subs: [
-      {
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.filter',
-        to: '/app/segmentation/filter',
-      },
-      {
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.custom',
-        to: '/app/segmentation/custom',
-      },
-    ],
+    to: '/app/segmentation/filter',
+    // subs: [
+    //   {
+    //     icon: 'simple-icon-paper-plane',
+    //     label: 'menu.filter',
+    //     to: '/app/segmentation/filter',
+    //   },
+    //   {
+    //     icon: 'simple-icon-paper-plane',
+    //     label: 'menu.custom',
+    //     to: '/app/segmentation/custom',
+    //   },
+    // ],
   },
   {
     id: 'campaigns',
