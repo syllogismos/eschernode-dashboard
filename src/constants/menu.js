@@ -1,8 +1,8 @@
 const data = [
   {
-    id: 'gogo',
+    id: 'home',
     icon: 'iconsminds-air-balloon-1',
-    label: 'menu.gogo',
+    label: 'menu.app',
     to: '/app/gogo',
     subs: [
       {
@@ -13,9 +13,9 @@ const data = [
     ],
   },
   {
-    id: 'secondmenu',
-    icon: 'iconsminds-three-arrow-fork',
-    label: 'menu.second-menu',
+    id: 'segmentation',
+    icon: 'iconsminds-filter-2',
+    label: 'menu.segmentation',
     to: '/app/second-menu',
     subs: [
       {
@@ -26,9 +26,15 @@ const data = [
     ],
   },
   {
-    id: 'blankpage',
-    icon: 'iconsminds-bucket',
-    label: 'menu.blank-page',
+    id: 'campaigns',
+    icon: 'iconsminds-mail-send',
+    label: 'menu.campaigns',
+    to: '/app/second-menu',
+  },
+  {
+    id: 'profile',
+    icon: 'iconsminds-decrase-inedit',
+    label: 'menu.profile',
     to: '/app/blank-page',
   },
   {

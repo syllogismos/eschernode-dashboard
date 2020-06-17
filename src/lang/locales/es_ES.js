@@ -42,6 +42,9 @@ module.exports = {
   'menu.search': 'Búsqueda',
   'menu.docs': 'Docs',
   'menu.blank-page': 'Blank Page',
+  'menu.segmentation': 'Segmentation',
+  'menu.campaigns': 'Campaigns',
+  'menu.profile': 'Profile',
   /* 04.Error  */
   'layouts.error-title': 'Vaya, parece que ha ocurrido un error!',
   'layouts.error-code': 'Código de error',
