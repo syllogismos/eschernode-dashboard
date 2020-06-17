@@ -1,14 +1,14 @@
 const data = [
   {
-    id: 'home',
+    id: 'dashboards',
     icon: 'iconsminds-air-balloon-1',
-    label: 'menu.app',
-    to: '/app/gogo',
+    label: 'menu.dashboards',
+    to: '/app/dashboards',
     subs: [
       {
         icon: 'simple-icon-paper-plane',
         label: 'menu.start',
-        to: '/app/gogo/start',
+        to: '/app/dashboards/start',
       },
     ],
   },

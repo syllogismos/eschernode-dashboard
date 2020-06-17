@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../layout/AppLayout';
 
-const Gogo = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-gogo" */ './gogo')
+const Dashboards = React.lazy(() =>
+  import(/* webpackChunkName: "viwes-gogo" */ './dashboards')
 );
 const SecondMenu = React.lazy(() =>
   import(/* webpackChunkName: "viwes-second-menu" */ './second-menu')
@@ -20,10 +20,14 @@ const App = ({ match }) => {
       <div className="dashboard-wrapper">
         <Suspense fallback={<div className="loading" />}>
           <Switch>
-            <Redirect exact from={`${match.url}/`} to={`${match.url}/gogo`} />
+            <Redirect
+              exact
+              from={`${match.url}/`}
+              to={`${match.url}/dashboards`}
+            />
             <Route
-              path={`${match.url}/gogo`}
-              render={(props) => <Gogo {...props} />}
+              path={`${match.url}/dashboards`}
+              render={(props) => <Dashboards {...props} />}
             />
             <Route
               path={`${match.url}/second-menu`}

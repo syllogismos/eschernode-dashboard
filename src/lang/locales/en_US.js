@@ -28,6 +28,7 @@ module.exports = {
   'user.username': 'Username',
 
   /* 03.Menu */
+  'menu.home': 'Home',
   'menu.app': 'Home',
   'menu.dashboards': 'Dashboards',
   'menu.gogo': 'Gogo',
