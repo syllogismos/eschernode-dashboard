@@ -16,12 +16,12 @@ const data = [
     id: 'segmentation',
     icon: 'iconsminds-filter-2',
     label: 'menu.segmentation',
-    to: '/app/second-menu',
+    to: '/app/segmentation',
     subs: [
       {
         icon: 'simple-icon-paper-plane',
         label: 'menu.second',
-        to: '/app/second-menu/second',
+        to: '/app/segmentation/second',
       },
     ],
   },
@@ -29,7 +29,7 @@ const data = [
     id: 'campaigns',
     icon: 'iconsminds-mail-send',
     label: 'menu.campaigns',
-    to: '/app/second-menu',
+    to: '/app/segmentation',
   },
   {
     id: 'profile',

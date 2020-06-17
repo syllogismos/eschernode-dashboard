@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 const Second = React.lazy(() =>
   import(/* webpackChunkName: "second" */ './second')
 );
-const SecondMenu = ({ match }) => (
+const Segmentation = ({ match }) => (
   <Suspense fallback={<div className="loading" />}>
     <Switch>
       <Redirect exact from={`${match.url}/`} to={`${match.url}/second`} />
@@ -16,4 +16,4 @@ const SecondMenu = ({ match }) => (
     </Switch>
   </Suspense>
 );
-export default SecondMenu;
+export default Segmentation;

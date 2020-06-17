@@ -7,8 +7,8 @@ import AppLayout from '../../layout/AppLayout';
 const Dashboards = React.lazy(() =>
   import(/* webpackChunkName: "viwes-gogo" */ './dashboards')
 );
-const SecondMenu = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-second-menu" */ './second-menu')
+const Segmentation = React.lazy(() =>
+  import(/* webpackChunkName: "viwes-second-menu" */ './segmentation')
 );
 const BlankPage = React.lazy(() =>
   import(/* webpackChunkName: "viwes-blank-page" */ './blank-page')
@@ -30,8 +30,8 @@ const App = ({ match }) => {
               render={(props) => <Dashboards {...props} />}
             />
             <Route
-              path={`${match.url}/second-menu`}
-              render={(props) => <SecondMenu {...props} />}
+              path={`${match.url}/segmentation`}
+              render={(props) => <Segmentation {...props} />}
             />
             <Route
               path={`${match.url}/blank-page`}
