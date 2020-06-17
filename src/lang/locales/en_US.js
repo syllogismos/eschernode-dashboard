@@ -46,6 +46,11 @@ module.exports = {
   'menu.segmentation': 'Segmentation',
   'menu.campaigns': 'Campaigns',
   'menu.profile': 'Profile',
+  'menu.history': 'Past Campaigns',
+  'menu.campaign': 'Campaign',
+  'menu.filter': 'Filter Your Followers',
+  'menu.custom': 'Custom Filters',
+  'menu.new.campaign': 'Create New Campaign',
 
   /* 04.Error Page */
   'pages.error-title': 'Ooops... looks like an error occurred!',

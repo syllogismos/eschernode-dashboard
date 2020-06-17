@@ -20,8 +20,13 @@ const data = [
     subs: [
       {
         icon: 'simple-icon-paper-plane',
-        label: 'menu.second',
-        to: '/app/segmentation/second',
+        label: 'menu.filter',
+        to: '/app/segmentation/filter',
+      },
+      {
+        icon: 'simple-icon-paper-plane',
+        label: 'menu.custom',
+        to: '/app/segmentation/custom',
       },
     ],
   },
@@ -29,7 +34,19 @@ const data = [
     id: 'campaigns',
     icon: 'iconsminds-mail-send',
     label: 'menu.campaigns',
-    to: '/app/segmentation',
+    to: '/app/campaigns',
+    subs: [
+      {
+        icon: 'simple-icon-paper-plane',
+        label: 'menu.new.campaign',
+        to: '/app/campaigns/start',
+      },
+      {
+        icon: 'simple-icon-paper-plane',
+        label: 'menu.history',
+        to: '/app/campaigns/history',
+      },
+    ],
   },
   {
     id: 'profile',

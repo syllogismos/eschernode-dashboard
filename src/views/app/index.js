@@ -14,6 +14,10 @@ const BlankPage = React.lazy(() =>
   import(/* webpackChunkName: "viwes-blank-page" */ './blank-page')
 );
 
+const Campaigns = React.lazy(() =>
+  import(/* webpackChunkName: "views-campaigns" */ './campaigns')
+);
+
 const App = ({ match }) => {
   return (
     <AppLayout>
@@ -32,6 +36,10 @@ const App = ({ match }) => {
             <Route
               path={`${match.url}/segmentation`}
               render={(props) => <Segmentation {...props} />}
+            />
+            <Route
+              path={`${match.url}/campaigns`}
+              render={(props) => <Campaigns {...props} />}
             />
             <Route
               path={`${match.url}/blank-page`}
