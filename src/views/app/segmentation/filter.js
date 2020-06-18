@@ -3,7 +3,7 @@ import { Row } from 'reactstrap';
 import IntlMessages from '../../../helpers/IntlMessages';
 import { Colxx, Separator } from '../../../components/common/CustomBootstrap';
 import Breadcrumb from '../../../containers/navs/Breadcrumb';
-import FilterContainer from '../../../containers/segmentation/FilterContainer';
+import FiltersContainer from '../../../containers/segmentation/FiltersContainer';
 
 const Filter = ({ match }) => (
   <>
@@ -15,7 +15,7 @@ const Filter = ({ match }) => (
     </Row>
     <Row>
       <Colxx xxs="12">
-        <FilterContainer />
+        <FiltersContainer />
       </Colxx>
     </Row>
   </>
