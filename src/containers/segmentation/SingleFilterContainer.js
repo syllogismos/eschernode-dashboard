@@ -310,17 +310,15 @@ const SingleFilterContainer = (props) => {
                   return <></>;
               }
             })()}
-            {() =>
-              closeButton ? (
-                <Colxx lg="1" className="col-right">
-                  <Button className="btn calendar-prev-btn mr-1">
-                    <span className="simple-icon-arrow-left" />
-                  </Button>
-                </Colxx>
-              ) : (
-                <></>
-              )
-            }
+            {closeButton ? (
+              <Colxx lg="1" className="col-right">
+                <Button className="btn calendar-prev-btn mr-1">
+                  <span className="simple-icon-arrow-left" />
+                </Button>
+              </Colxx>
+            ) : (
+              <></>
+            )}
           </Row>
         </CardBody>
       </Card>
