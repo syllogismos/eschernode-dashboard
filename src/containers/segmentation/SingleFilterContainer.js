@@ -48,14 +48,7 @@ const SingleFilterContainer = (props) => {
     JSON.parse(JSON.stringify(filterInitialState))
   );
 
-  const {
-    key,
-    i,
-    filters,
-    setFilters,
-    closeButton,
-    handleDeleteFilter,
-  } = props;
+  const { i, filters, setFilters, closeButton, handleDeleteFilter } = props;
   function handleSelectChange(evt, target) {
     const value = evt;
     let f = filters[i];
