@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Row, Card, CardBody, CardImg } from 'reactstrap';
-import { Colxx } from '../common/CustomBootstrap';
+import { Card, CardBody, CardImg } from 'reactstrap';
 
 const ProfileComponent = ({ twitterUser }) => {
   const profileInfo = twitterUser.additionalUserInfo.profile;

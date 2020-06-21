@@ -1,48 +1,24 @@
 import React, { useState } from 'react';
-import {
-  Row,
-  Card,
-  CardBody,
-  Nav,
-  NavItem,
-  Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownItem,
-  DropdownMenu,
-  TabContent,
-  TabPane,
-  Badge,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  CardImg,
-} from 'reactstrap';
+import { Row, Nav, NavItem, Button, TabPane, TabContent } from 'reactstrap';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import SingleFilterContainer from './SingleFilterContainer';
 import { Colxx } from '../../components/common/CustomBootstrap';
-import { filterInitialState } from '../../constants/filter';
+import { generateInitFilter } from '../../constants/filter';
 
 const FiltersContainer = () => {
   const [activeTab, setActiveTab] = useState('filter');
 
-  const [filters, setFilters] = useState([
-    JSON.parse(JSON.stringify(filterInitialState)),
-  ]);
+  const [filters, setFilters] = useState([generateInitFilter()]);
 
-  // function handleFilterChange(i, filter) {
-  //   filters[i] = filter;
-  //   setFilters(filters);
-  // }
-
-  function handleDeleteFilter(i) {
-    filters.splice(i, i + 1);
-    setFilters(filters);
+  function handleDeleteFilter(id) {
+    // filters.splice(i, i + 1);
+    return () =>
+      setFilters((filters) => filters.filter((e, index) => index !== id));
   }
 
   function addFilter() {
-    setFilters(filters.concat(JSON.parse(JSON.stringify(filterInitialState))));
+    setFilters((filters) => filters.concat(generateInitFilter()));
   }
 
   return (

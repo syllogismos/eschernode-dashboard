@@ -3,6 +3,7 @@
  */
 
 export const filterInitialState = {
+  id: makeid(12),
   selectedFilter: '',
   twitterHandle: '',
   selectedCountry: '',
@@ -46,3 +47,19 @@ export const filterInitialState = {
 };
 
 export const filterCopy = JSON.parse(JSON.stringify(filterInitialState));
+
+export function generateInitFilter() {
+  var f = JSON.parse(JSON.stringify(filterInitialState));
+  return { ...f, id: makeid(12) };
+}
+
+function makeid(length) {
+  var result = '';
+  var characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}

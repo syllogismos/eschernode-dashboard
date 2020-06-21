@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Row, CardBody, Button, Span, Input } from 'reactstrap';
+import { Card, Row, CardBody, Input, Button } from 'reactstrap';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import TagsInput from 'react-tagsinput';
@@ -319,7 +319,7 @@ const SingleFilterContainer = (props) => {
                   return <></>;
               }
             })()}
-            {/* {closeButton ? (
+            {closeButton ? (
               <Colxx lg="1" className="col-right">
                 <Button
                   className="btn calendar-prev-btn mr-1"
@@ -330,7 +330,7 @@ const SingleFilterContainer = (props) => {
               </Colxx>
             ) : (
               <></>
-            )} */}
+            )}
           </Row>
         </CardBody>
       </Card>
