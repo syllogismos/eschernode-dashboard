@@ -11,10 +11,10 @@ const FiltersContainer = () => {
 
   const [filters, setFilters] = useState([generateInitFilter()]);
 
-  function handleDeleteFilter(id) {
+  function handleDeleteFilter(i) {
     // filters.splice(i, i + 1);
     return () =>
-      setFilters((filters) => filters.filter((e, index) => index !== id));
+      setFilters((filters) => filters.filter((e, index) => index !== i));
   }
 
   function addFilter() {
@@ -58,13 +58,14 @@ const FiltersContainer = () => {
       <TabContent activeTab={activeTab}>
         <TabPane tabId="filter">
           {filters.map((f, i) => (
-            <Row key={i}>
-              <Colxx xxs="12" lg="12" className="mb-4">
+            <Row key={f.id}>
+              <Colxx xxs="12" lg="12" className="mb-4" key={f.id}>
                 <SingleFilterContainer
                   filters={filters}
                   setFilters={setFilters}
                   closeButton={i > 0}
                   i={i}
+                  key={f.id}
                   handleDeleteFilter={handleDeleteFilter}
                 />
               </Colxx>
