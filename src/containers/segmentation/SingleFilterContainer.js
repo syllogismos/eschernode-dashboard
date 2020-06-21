@@ -7,6 +7,7 @@ import CustomSelectInput from '../../components/common/CustomSelectInput';
 import { Colxx } from '../../components/common/CustomBootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-tagsinput/react-tagsinput.css';
+import { filterInitialState } from '../../constants/filter';
 
 const filterData = [
   { label: 'Twitter Handle', value: 'twitterHandle', key: 0 },
@@ -43,42 +44,50 @@ const SingleFilterContainer = (props) => {
   //   value: 'and',
   //   key: 0,
   // });
-  const { filter, setFilter, closeButton } = props;
+  const [filter, setFilter] = useState(
+    JSON.parse(JSON.stringify(filterInitialState))
+  );
 
+  const { i, filters, setFilters, closeButton, handleDeleteFilter } = props;
   function handleSelectChange(evt, target) {
     const value = evt;
-    setFilter({
-      ...filter,
-      [target.name]: value,
-    });
+    let f = filters[i];
+    f = { ...f, [target.name]: value };
+    filters[i] = f;
+    setFilters(filters);
+    setFilter(f);
   }
 
   function handleChange(evt) {
-    const value = evt.target.value;
-    setFilter({
-      ...filter,
-      [evt.target.name]: value,
-    });
+    const { value } = evt.target;
+    let f = filters[i];
+    f = { ...f, [evt.target.name]: value };
+    filters[i] = f;
+    setFilters(filters);
+    setFilter(f);
   }
 
   function handleTopicsChange(e) {
-    setFilter({
-      ...filter,
-      ['topics']: e,
-    });
+    let f = filters[i];
+    f = { ...f, topics: e };
+    filters[i] = f;
+    setFilters(filters);
+    setFilter(f);
   }
 
   function handleStartDateChange(e) {
-    setFilter({
-      ...filter,
-      ['startDate']: e,
-    });
+    let f = filters[i];
+    f = { ...f, startDate: e };
+    filters[i] = f;
+    setFilters(filters);
+    setFilter(f);
   }
   function handleEndDateChange(e) {
-    setFilter({
-      ...filter,
-      ['endDate']: e,
-    });
+    let f = filters[i];
+    f = { ...f, endDate: e };
+    filters[i] = f;
+    setFilters(filters);
+    setFilter(f);
   }
 
   // const [selectedStringCondition, setSelectedStringCondition] = useState({
@@ -310,15 +319,18 @@ const SingleFilterContainer = (props) => {
                   return <></>;
               }
             })()}
-            {closeButton ? (
+            {/* {closeButton ? (
               <Colxx lg="1" className="col-right">
-                <Button className="btn calendar-prev-btn mr-1">
+                <Button
+                  className="btn calendar-prev-btn mr-1"
+                  onClick={handleDeleteFilter(i)}
+                >
                   <span className="simple-icon-arrow-left" />
                 </Button>
               </Colxx>
             ) : (
               <></>
-            )}
+            )} */}
           </Row>
         </CardBody>
       </Card>
