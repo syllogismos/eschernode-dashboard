@@ -3,14 +3,14 @@ const data = [
     id: 'dashboards',
     icon: 'iconsminds-air-balloon-1',
     label: 'menu.dashboards',
-    to: '/app/dashboards',
-    subs: [
-      {
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.start',
-        to: '/app/dashboards/start',
-      },
-    ],
+    to: '/app/dashboards/start',
+    // subs: [
+    //   {
+    //     icon: 'simple-icon-paper-plane',
+    //     label: 'menu.start',
+    //     to: '/app/dashboards/start',
+    //   },
+    // ],
   },
   {
     id: 'segmentation',
@@ -58,8 +58,8 @@ const data = [
     id: 'docs',
     icon: 'iconsminds-library',
     label: 'menu.docs',
-    to: 'https://gogo-react-docs.coloredstrategies.com/',
-    newWindow: true,
+    to: '/app',
+    newWindow: false,
   },
 ];
 export default data;

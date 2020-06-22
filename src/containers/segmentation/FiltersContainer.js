@@ -12,7 +12,6 @@ const FiltersContainer = () => {
   const [filters, setFilters] = useState([generateInitFilter()]);
 
   function handleDeleteFilter(i) {
-    // filters.splice(i, i + 1);
     return () =>
       setFilters((filters) => filters.filter((e, index) => index !== i));
   }
@@ -74,10 +73,19 @@ const FiltersContainer = () => {
           <Row>
             <Colxx>
               <Button
-                className="btn calendar-prev-btn mr-1"
+                className="btn calendar-prev-btn mb-2"
                 onClick={addFilter}
               >
                 <span className="simple-icon-plus" />
+              </Button>{' '}
+              <Button className="mb-2" outline color="primary">
+                Get Users
+              </Button>{' '}
+              <Button className="mb-2" outline color="primary">
+                Start Messaging Campaign
+              </Button>{' '}
+              <Button className="mb-2" outline color="primary">
+                Save as Custom Filter
               </Button>
             </Colxx>
           </Row>
