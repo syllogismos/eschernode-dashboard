@@ -25,7 +25,7 @@ export const firebaseConfig = {
 };
 
 export const searchPath = '#';
-export const servicePath = 'https://api.coloredstrategies.com';
+export const servicePath = 'http://127.0.0.1:8000/api/';
 
 export const themeColorStorageKey = '__theme_selected_color';
 export const isMultiColorActive = false;

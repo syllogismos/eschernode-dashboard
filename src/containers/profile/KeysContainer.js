@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardBody,
@@ -8,46 +8,134 @@ import {
   Button,
 } from 'reactstrap';
 import { Formik, Form, Field } from 'formik';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { servicePath } from '../../constants/defaultValues';
 
-const KeysContainer = () => {
-  const [api_key] = useState('');
-  const [api_secret] = useState('');
-  const [access_token] = useState('');
-  const [access_token_secret] = useState('');
-  const loading = false;
+const KeysContainer = (props) => {
+  const [keys, setKeys] = useState({
+    api_key: '',
+    api_secret: '',
+    access_token: '',
+    access_token_secret: '',
+    twitter_id: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const { user, twitterUser } = props;
+  useEffect(() => {
+    console.log('handling get');
+
+    async function fetchData() {
+      var data = JSON.stringify({
+        uid: user,
+      });
+      var config = {
+        method: 'post',
+        url: servicePath + 'get_user_details',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: data,
+      };
+      const result = await axios(config);
+      if (result.data.status === 200) {
+        setKeys({ ...keys, ...result.data.userdetails });
+        console.log(result);
+      }
+      console.log(result);
+    }
+    fetchData();
+  }, []);
   const initialValues = {
-    api_key,
-    api_secret,
-    access_token,
-    access_token_secret,
+    apiKey: keys.api_key,
+    apiSecret: keys.api_secret,
+    accessToken: keys.access_token,
+    accessTokenSecret: keys.access_token_secret,
   };
+
+  function handleUpdate(values) {
+    setLoading(true);
+    var data = JSON.stringify({
+      uid: user,
+      data: {
+        api_key: keys.api_key,
+        api_secret: keys.api_secret,
+        access_token: keys.access_token,
+        access_token_secret: keys.access_token_secret,
+        twitter_id: twitterUser.additionalUserInfo.profile.id_str,
+      },
+    });
+    var config = {
+      method: 'post',
+      url: servicePath + 'update_user_details',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setLoading(false);
+      })
+      .catch(function (error) {
+        setLoading(false);
+        console.log(error);
+      });
+  }
+
+  function handleChange(evt) {
+    const { value } = evt.target;
+    setKeys({ ...keys, [evt.target.name]: value });
+  }
   return (
     <>
       <Card className="mb-4">
         <CardBody>
           <CardTitle>Twitter Secret Keys</CardTitle>
 
-          <Formik initialValues={initialValues}>
+          <Formik initialValues={initialValues} onSubmit={handleUpdate}>
             {({ errors, touched }) => (
               <Form className="av-tooltip tooltip-label-bottom">
                 <FormGroup className="form-group has-float-label">
                   <Label>Api key</Label>
-                  <Field className="form-control" name="api_key" />
+                  <Field
+                    className="form-control"
+                    name="api_key"
+                    value={keys.api_key}
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup className="form-group has-float-label">
                   <Label>Api secret</Label>
-                  <Field className="form-control" name="api_secret" />
+                  <Field
+                    className="form-control"
+                    name="api_secret"
+                    value={keys.api_secret}
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup className="form-group has-float-label">
                   <Label>Access token</Label>
-                  <Field className="form-control" name="access_token" />
+                  <Field
+                    className="form-control"
+                    name="access_token"
+                    value={keys.access_token}
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup className="form-group has-float-label">
                   <Label>Access token secret</Label>
-                  <Field className="form-control" name="access_token_secret" />
+                  <Field
+                    className="form-control"
+                    name="access_token_secret"
+                    value={keys.access_token_secret}
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <Button
                   color="primary"
+                  type="submit"
                   className={`btn-shadow btn-multiple-state ${
                     loading ? 'show-spinner' : ''
                   }`}
@@ -69,4 +157,9 @@ const KeysContainer = () => {
   );
 };
 
-export default KeysContainer;
+const mapStateToProps = ({ authUser }) => {
+  const { twitterUser, user } = authUser;
+  return { user, twitterUser };
+};
+
+export default connect(mapStateToProps, {})(KeysContainer);

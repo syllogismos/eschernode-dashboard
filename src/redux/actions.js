@@ -28,6 +28,14 @@ export const MENU_CHANGE_DEFAULT_CLASSES = 'MENU_CHANGE_DEFAULT_CLASSES';
 export const MENU_CHANGE_HAS_SUB_ITEM_STATUS =
   'MENU_CHANGE_HAS_SUB_ITEM_STATUS';
 
+// /* USER DETAILS */
+// export const UPDATE_USER_DETAILS = 'UPDATE_USER_DETAILS';
+// export const GET_USER_DETAILS = 'GET_USER_DETAILS';
+// export const GET_USER_DETAILS_SUCCESS = 'GET_USER_DETAILS_SUCCESS';
+// export const UPDATE_USER_DETAILS_SUCCESS = 'UPDATE_USER_DETAILS_SUCCESS';
+// export const GET_USER_DETAILS_ERROR = 'GET_USER_DETAILS_ERROR';
+// export const UPDATE_USER_DETAILS_ERROR = 'UPDATE_USER_DETAILS_ERROR';
+
 export * from './menu/actions';
 export * from './settings/actions';
 export * from './auth/actions';
