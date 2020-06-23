@@ -24,6 +24,7 @@ const KeysContainer = (props) => {
   const { user, twitterUser } = props;
   useEffect(() => {
     console.log('handling get');
+    setLoading(true);
 
     async function fetchData() {
       var data = JSON.stringify({
@@ -39,13 +40,16 @@ const KeysContainer = (props) => {
       };
       const result = await axios(config);
       if (result.data.status === 200) {
-        setKeys({ ...keys, ...result.data.userdetails });
+        setKeys((k) => {
+          return { ...k, ...result.data.userdetails };
+        });
         console.log(result);
       }
+      setLoading(false);
       console.log(result);
     }
     fetchData();
-  }, []);
+  }, [user]);
   const initialValues = {
     apiKey: keys.api_key,
     apiSecret: keys.api_secret,
@@ -100,6 +104,7 @@ const KeysContainer = (props) => {
                 <FormGroup className="form-group has-float-label">
                   <Label>Api key</Label>
                   <Field
+                    disabled={loading}
                     className="form-control"
                     name="api_key"
                     value={keys.api_key}
@@ -109,6 +114,7 @@ const KeysContainer = (props) => {
                 <FormGroup className="form-group has-float-label">
                   <Label>Api secret</Label>
                   <Field
+                    disabled={loading}
                     className="form-control"
                     name="api_secret"
                     value={keys.api_secret}
@@ -118,6 +124,7 @@ const KeysContainer = (props) => {
                 <FormGroup className="form-group has-float-label">
                   <Label>Access token</Label>
                   <Field
+                    disabled={loading}
                     className="form-control"
                     name="access_token"
                     value={keys.access_token}
@@ -127,6 +134,7 @@ const KeysContainer = (props) => {
                 <FormGroup className="form-group has-float-label">
                   <Label>Access token secret</Label>
                   <Field
+                    disabled={loading}
                     className="form-control"
                     name="access_token_secret"
                     value={keys.access_token_secret}
