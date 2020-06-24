@@ -26,7 +26,7 @@ const ProfileListComponent = ({ profiles }) => {
   useEffect(() => {
     setCurrentPage(1);
     setTotalPage(Math.ceil(profiles.length / selectedPageSize));
-  }, [selectedPageSize]);
+  }, [selectedPageSize, profiles]);
 
   const totalProfilesCount = profiles.length;
   const startIndex = (currentPage - 1) * selectedPageSize;

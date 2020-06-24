@@ -10,12 +10,13 @@ import 'react-tagsinput/react-tagsinput.css';
 import { filterInitialState } from '../../constants/filter';
 
 const filterData = [
-  { label: 'Twitter Handle', value: 'twitterHandle', key: 0 },
-  { label: 'Follower Count', value: 'followerCount', key: 1 },
-  { label: 'Friend Count', value: 'friendCount', key: 2 },
-  { label: 'Topics', value: 'topics', key: 3 },
-  { label: 'Last Seen', value: 'lastSeen', key: 4 },
-  { label: 'From Country', value: 'country', key: 5 },
+  { label: 'All Followers', value: 'allFollowers', key: 0 },
+  { label: 'Twitter Handle', value: 'twitterHandle', key: 1 },
+  { label: 'Follower Count', value: 'followerCount', key: 2 },
+  { label: 'Friend Count', value: 'friendCount', key: 3 },
+  { label: 'Topics', value: 'topics', key: 4 },
+  { label: 'Last Seen', value: 'lastSeen', key: 5 },
+  { label: 'From Country', value: 'country', key: 6 },
 ];
 
 const countryData = [
@@ -125,6 +126,8 @@ const SingleFilterContainer = (props) => {
               switch (
                 filter.selectedFilter ? filter.selectedFilter.value : ''
               ) {
+                case 'allFollowers':
+                  return <></>;
                 case 'twitterHandle':
                   return (
                     <>

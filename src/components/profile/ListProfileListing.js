@@ -21,7 +21,7 @@ const ListProfileListing = ({
           if (displayMode === 'imagelist') {
             return (
               <ThumbListView
-                key={profile.id}
+                key={profile._id}
                 profile={profile}
                 collect={collect}
               />
@@ -30,7 +30,7 @@ const ListProfileListing = ({
           if (displayMode === 'thumblist') {
             return (
               <ThumbListView
-                key={profile.id}
+                key={profile._id}
                 profile={profile}
                 collect={collect}
               />
@@ -38,7 +38,7 @@ const ListProfileListing = ({
           }
           return (
             <ThumbListView
-              key={profile.id}
+              key={profile._id}
               profile={profile}
               collect={collect}
             />

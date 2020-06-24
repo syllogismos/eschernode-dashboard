@@ -10,7 +10,7 @@ export const filterInitialState = {
   followerCount: 0,
   followerCount1: 0,
   friendCount: 0,
-  frinedCount1: 0,
+  friendCount1: 0,
   topicsCondition: {
     label: 'AND',
     value: 'and',

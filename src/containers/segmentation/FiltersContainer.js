@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Row, Nav, NavItem, Button, TabPane, TabContent } from 'reactstrap';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import SingleFilterContainer from './SingleFilterContainer';
 import ProfileListComponent from '../../components/profile/ProfileListComponent';
 import { Colxx, Separator } from '../../components/common/CustomBootstrap';
 import { generateInitFilter } from '../../constants/filter';
-import axios from 'axios';
-import { connect } from 'react-redux';
 import { servicePath } from '../../constants/defaultValues';
 
 const FiltersContainer = (props) => {
@@ -15,43 +15,40 @@ const FiltersContainer = (props) => {
 
   const [filters, setFilters] = useState([generateInitFilter()]);
 
-  const [profiles, setProfiles] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-  ]);
-  const { user } = props;
+  const [getUsersLoading, setGetUsersLoading] = useState(false);
+
+  const [profiles, setProfiles] = useState([]);
+  const { user, twitterUser } = props;
   function handleDeleteFilter(i) {
-    return () =>
-      setFilters((filters) => filters.filter((e, index) => index !== i));
+    return () => setFilters((fs) => fs.filter((e, index) => index !== i));
   }
 
   function addFilter() {
-    setFilters((filters) => filters.concat(generateInitFilter()));
+    setFilters((fs) => fs.concat(generateInitFilter()));
   }
 
   function getUsers() {
-    var data = JSON.stringify({
+    setGetUsersLoading(true);
+    const data = JSON.stringify({
       uid: user,
-      filters: filters,
+      filters,
+      id_str: twitterUser.additionalUserInfo.profile.id_str,
     });
-    var config = {
+    const config = {
       method: 'post',
-      url: servicePath + 'get_filtered_users',
+      url: `${servicePath}get_filtered_users`,
       headers: {
         'Content-Type': 'application/json',
       },
-      data: data,
+      data,
     };
     axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
+      .then((response) => {
+        setGetUsersLoading(false);
+        // console.log(JSON.stringify(response.data));
+        setProfiles(response.data.es_response.hits.hits);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -136,9 +133,13 @@ const FiltersContainer = (props) => {
             </Colxx>
           </Row>
           <Row>
-            <Colxx xxs="12">
-              <ProfileListComponent profiles={profiles} />
-            </Colxx>
+            {profiles.length > 0 ? (
+              <Colxx xxs="12">
+                <ProfileListComponent profiles={profiles} />
+              </Colxx>
+            ) : (
+              <></>
+            )}
           </Row>
         </TabPane>
         <TabPane tabId="custom_filters">
@@ -154,8 +155,8 @@ const FiltersContainer = (props) => {
 };
 
 const mapStateToProps = ({ authUser }) => {
-  const { user } = authUser;
-  return { user };
+  const { user, twitterUser } = authUser;
+  return { user, twitterUser };
 };
 
 export default connect(mapStateToProps, {})(FiltersContainer);
