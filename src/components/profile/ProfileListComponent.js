@@ -13,7 +13,7 @@ const getIndex = (value, arr, prop) => {
 
 const pageSizes = [4, 8, 12, 20];
 
-const ProfileListComponent = ({ profiles }) => {
+const ProfileListComponent = ({ profiles, totalHits }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [displayMode, setDisplayMode] = useState('thumblist');
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,6 +49,7 @@ const ProfileListComponent = ({ profiles }) => {
             }
           }}
           pageSizes={pageSizes}
+          totalHits={totalHits}
         />
         <ListProfileListing
           items={profiles.slice(startIndex, endIndex)}

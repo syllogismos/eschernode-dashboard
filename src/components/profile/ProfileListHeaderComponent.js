@@ -30,6 +30,7 @@ const ProfileListHeaderComponent = ({
   endIndex,
   onSearchKey,
   pageSizes,
+  totalHits,
 }) => {
   const [displayOptionsIsOpen, setDisplayOptionsIsOpen] = useState(false);
 
@@ -108,7 +109,15 @@ const ProfileListHeaderComponent = ({
                   onKeyPress={(e) => onSearchKey(e)}
                 />
               </div>
+              {` `}
+              <div className="float-md-right pt-1">
+                <span className="text-muted text-small ml-3">
+                  Showing {totalHits < 30 ? totalHits : '30'} of {totalHits}{' '}
+                  users from this segment
+                </span>
+              </div>
             </div>
+
             <div className="float-md-right pt-1">
               <span className="text-muted text-small mr-1">{`${startIndex}-${endIndex} of ${totalItemCount} `}</span>
               <UncontrolledDropdown className="d-inline-block">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Nav, NavItem, Button, TabPane, TabContent } from 'reactstrap';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -9,6 +9,7 @@ import ProfileListComponent from '../../components/profile/ProfileListComponent'
 import { Colxx, Separator } from '../../components/common/CustomBootstrap';
 import { generateInitFilter } from '../../constants/filter';
 import { servicePath } from '../../constants/defaultValues';
+import { NotificationManager } from '../../components/common/react-notifications';
 
 const FiltersContainer = (props) => {
   const [activeTab, setActiveTab] = useState('filter');
@@ -16,8 +17,15 @@ const FiltersContainer = (props) => {
   const [filters, setFilters] = useState([generateInitFilter()]);
 
   const [getUsersLoading, setGetUsersLoading] = useState(false);
-
+  const [error, setError] = useState();
   const [profiles, setProfiles] = useState([]);
+  const [totalHits, setTotalHits] = useState(0);
+  useEffect(() => {
+    if (error) {
+      NotificationManager.warning(error, 'Server Error', 3000, null, null, '');
+      setError('');
+    }
+  }, [error]);
   const { user, twitterUser } = props;
   function handleDeleteFilter(i) {
     return () => setFilters((fs) => fs.filter((e, index) => index !== i));
@@ -29,6 +37,7 @@ const FiltersContainer = (props) => {
 
   function getUsers() {
     setGetUsersLoading(true);
+    setProfiles([]);
     const data = JSON.stringify({
       uid: user,
       filters,
@@ -44,12 +53,19 @@ const FiltersContainer = (props) => {
     };
     axios(config)
       .then((response) => {
-        setGetUsersLoading(false);
         // console.log(JSON.stringify(response.data));
-        setProfiles(response.data.es_response.hits.hits);
+        if (response.data.status === 200) {
+          setProfiles(response.data.es_response.hits.hits);
+          setTotalHits(response.data.es_response.hits.total.value);
+        } else {
+          setError(response.data.message);
+        }
+        setGetUsersLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((er) => {
+        setGetUsersLoading(false);
+        setError(er.response.statusText);
+        console.log(er);
       });
   }
 
@@ -112,17 +128,24 @@ const FiltersContainer = (props) => {
                 <span className="simple-icon-plus" />
               </Button>{' '}
               <Button
-                className="mb-2"
-                outline
+                className={`mb-2 btn-shadow btn-multiple-state ${
+                  getUsersLoading ? 'show-spinner' : ''
+                }`}
                 color="primary"
+                outline
                 onClick={getUsers}
               >
-                Get Users
+                <span className="spinner d-inline-block">
+                  <span className="bounce1" />
+                  <span className="bounce2" />
+                  <span className="bounce3" />
+                </span>
+                <span className="label">Get Users</span>
               </Button>{' '}
-              <Button className="mb-2" outline color="primary">
+              <Button className="mb-2 btn-shadow" outline color="primary">
                 Start Messaging Campaign
               </Button>{' '}
-              <Button className="mb-2" outline color="primary">
+              <Button className="mb-2 btn-shadow" outline color="primary">
                 Save as Custom Filter
               </Button>
             </Colxx>
@@ -135,7 +158,10 @@ const FiltersContainer = (props) => {
           <Row>
             {profiles.length > 0 ? (
               <Colxx xxs="12">
-                <ProfileListComponent profiles={profiles} />
+                <ProfileListComponent
+                  profiles={profiles}
+                  totalHits={totalHits}
+                />
               </Colxx>
             ) : (
               <></>
