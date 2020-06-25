@@ -59,7 +59,7 @@ const KeysContainer = (props) => {
 
   function handleUpdate(values) {
     setLoading(true);
-    var data = JSON.stringify({
+    const data = JSON.stringify({
       uid: user,
       data: {
         api_key: keys.api_key,
@@ -69,20 +69,20 @@ const KeysContainer = (props) => {
         twitter_id: twitterUser.additionalUserInfo.profile.id_str,
       },
     });
-    var config = {
+    const config = {
       method: 'post',
-      url: servicePath + 'update_user_details',
+      url: `${servicePath}update_user_details`,
       headers: {
         'Content-Type': 'application/json',
       },
-      data: data,
+      data,
     };
     axios(config)
-      .then(function (response) {
+      .then((response) => {
         console.log(JSON.stringify(response.data));
         setLoading(false);
       })
-      .catch(function (error) {
+      .catch((error) => {
         setLoading(false);
         console.log(error);
       });

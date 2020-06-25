@@ -25,6 +25,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
+  const [dm, setDM] = useState('');
 
   useEffect(() => {
     if (error) {
@@ -129,7 +130,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
                   </Row>
                   <Row>
                     <Colxx>
-                      <ComposeDM />
+                      <ComposeDM dm={dm} setDM={setDM} />
                     </Colxx>
                   </Row>
                 </Colxx>
