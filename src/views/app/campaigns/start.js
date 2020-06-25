@@ -33,6 +33,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
   const [dm, setDM] = useState('');
   const [testModal, setTestModal] = useState(false);
   const [twitterHandle, setTwitterHandle] = useState('');
+  const [testSendLoading, setTestSendLoading] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -79,6 +80,36 @@ const Start = ({ match, filters, user, twitterUser }) => {
   function checkFilters() {
     // this will trigger the useEffect clause to update the count
     setCount(0);
+  }
+
+  function handleTestModalSend() {
+    setTestSendLoading(true);
+    const data = JSON.stringify({
+      uid: user,
+      twitterHandle,
+      dm,
+    });
+    const config = {
+      method: 'post',
+      url: `${servicePath}send_test_dm`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data,
+    };
+    axios(config)
+      .then((response) => {
+        if (response.data.status === 200) {
+          console.log(response);
+        } else {
+          console.log(response);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setTestModal(false);
+    setTestSendLoading(false);
   }
 
   return (
@@ -210,11 +241,20 @@ const Start = ({ match, filters, user, twitterUser }) => {
                             <ModalFooter>
                               <Button
                                 color="primary"
-                                onClick={() => setTestModal(false)}
+                                className={`mb-2 btn-shadow btn-multiple-state ${
+                                  testSendLoading ? 'show-spinner' : ''
+                                }`}
+                                onClick={handleTestModalSend}
                               >
-                                Send
+                                <span className="spinner d-inline-block">
+                                  <span className="bounce1" />
+                                  <span className="bounce2" />
+                                  <span className="bounce3" />
+                                </span>
+                                <span className="label">Send</span>
                               </Button>{' '}
                               <Button
+                                className="mb-2"
                                 color="secondary"
                                 onClick={() => setTestModal(false)}
                               >
