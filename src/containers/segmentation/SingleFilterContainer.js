@@ -49,7 +49,14 @@ const SingleFilterContainer = (props) => {
     JSON.parse(JSON.stringify(filterInitialState))
   );
 
-  const { i, filters, setFilters, closeButton, handleDeleteFilter } = props;
+  const {
+    i,
+    filters,
+    setFilters,
+    closeButton,
+    handleDeleteFilter,
+    updateFiltersState,
+  } = props;
   function handleSelectChange(evt, target) {
     const value = evt;
     let f = filters[i];
@@ -57,6 +64,7 @@ const SingleFilterContainer = (props) => {
     filters[i] = f;
     setFilters(filters);
     setFilter(f);
+    updateFiltersState();
   }
 
   function handleChange(evt) {
@@ -66,6 +74,7 @@ const SingleFilterContainer = (props) => {
     filters[i] = f;
     setFilters(filters);
     setFilter(f);
+    updateFiltersState();
   }
 
   function handleTopicsChange(e) {
@@ -74,6 +83,7 @@ const SingleFilterContainer = (props) => {
     filters[i] = f;
     setFilters(filters);
     setFilter(f);
+    updateFiltersState();
   }
 
   function handleStartDateChange(e) {
@@ -82,6 +92,7 @@ const SingleFilterContainer = (props) => {
     filters[i] = f;
     setFilters(filters);
     setFilter(f);
+    updateFiltersState();
   }
   function handleEndDateChange(e) {
     let f = filters[i];
@@ -89,6 +100,7 @@ const SingleFilterContainer = (props) => {
     filters[i] = f;
     setFilters(filters);
     setFilter(f);
+    updateFiltersState();
   }
 
   // const [selectedStringCondition, setSelectedStringCondition] = useState({

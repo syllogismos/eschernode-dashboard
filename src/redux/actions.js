@@ -28,6 +28,9 @@ export const MENU_CHANGE_DEFAULT_CLASSES = 'MENU_CHANGE_DEFAULT_CLASSES';
 export const MENU_CHANGE_HAS_SUB_ITEM_STATUS =
   'MENU_CHANGE_HAS_SUB_ITEM_STATUS';
 
+/* FILTERS */
+export const UPDATE_FILTERS = 'UPDATE_FILTERS';
+
 // /* USER DETAILS */
 // export const UPDATE_USER_DETAILS = 'UPDATE_USER_DETAILS';
 // export const GET_USER_DETAILS = 'GET_USER_DETAILS';
@@ -39,3 +42,4 @@ export const MENU_CHANGE_HAS_SUB_ITEM_STATUS =
 export * from './menu/actions';
 export * from './settings/actions';
 export * from './auth/actions';
+export * from './filters/actions';

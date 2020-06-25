@@ -34,19 +34,19 @@ const data = [
     id: 'campaigns',
     icon: 'iconsminds-mail-send',
     label: 'menu.campaigns',
-    to: '/app/campaigns',
-    subs: [
-      {
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.new.campaign',
-        to: '/app/campaigns/start',
-      },
-      {
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.history',
-        to: '/app/campaigns/history',
-      },
-    ],
+    to: '/app/campaigns/start',
+    // subs: [
+    //   {
+    //     icon: 'simple-icon-paper-plane',
+    //     label: 'menu.new.campaign',
+    //     to: '/app/campaigns/start',
+    //   },
+    //   {
+    //     icon: 'simple-icon-paper-plane',
+    //     label: 'menu.history',
+    //     to: '/app/campaigns/history',
+    //   },
+    // ],
   },
   {
     id: 'profile',

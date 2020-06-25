@@ -10,8 +10,9 @@ import { Colxx, Separator } from '../../components/common/CustomBootstrap';
 import { generateInitFilter } from '../../constants/filter';
 import { servicePath } from '../../constants/defaultValues';
 import { NotificationManager } from '../../components/common/react-notifications';
+import { updateFilters } from '../../redux/actions';
 
-const FiltersContainer = (props) => {
+const FiltersContainer = ({ user, twitterUser, updateFiltersAction }) => {
   const [activeTab, setActiveTab] = useState('filter');
 
   const [filters, setFilters] = useState([generateInitFilter()]);
@@ -26,7 +27,9 @@ const FiltersContainer = (props) => {
       setError('');
     }
   }, [error]);
-  const { user, twitterUser } = props;
+  useEffect(() => {
+    updateFiltersAction(filters);
+  }, [filters, updateFiltersAction]);
   function handleDeleteFilter(i) {
     return () => setFilters((fs) => fs.filter((e, index) => index !== i));
   }
@@ -115,6 +118,7 @@ const FiltersContainer = (props) => {
                   i={i}
                   key={f.id}
                   handleDeleteFilter={handleDeleteFilter}
+                  updateFiltersState={() => updateFiltersAction(filters)}
                 />
               </Colxx>
             </Row>
@@ -185,4 +189,6 @@ const mapStateToProps = ({ authUser }) => {
   return { user, twitterUser };
 };
 
-export default connect(mapStateToProps, {})(FiltersContainer);
+export default connect(mapStateToProps, { updateFiltersAction: updateFilters })(
+  FiltersContainer
+);
