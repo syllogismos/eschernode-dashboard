@@ -5,8 +5,9 @@ import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
 import { Colxx, Separator } from '../../../components/common/CustomBootstrap';
 import Breadcrumb from '../../../containers/navs/Breadcrumb';
+import FiltersParseComponent from '../../../components/filters/FiltersParseComponent';
 
-const Start = ({ match }) => {
+const Start = ({ match, filters }) => {
   const [activeTab, setActiveTab] = useState('new');
 
   return (
@@ -51,6 +52,21 @@ const Start = ({ match }) => {
               </NavLink>
             </NavItem>
           </Nav>
+          <TabContent activeTab={activeTab}>
+            <TabPane tabId="new">
+              <Row>
+                <Colxx xxs="12" lg="6">
+                  <FiltersParseComponent
+                    className="mb-4"
+                    filters={filters.filters}
+                  />
+                </Colxx>
+              </Row>
+            </TabPane>
+            <TabPane tabId="past">
+              <p>Past Campaigns</p>
+            </TabPane>
+          </TabContent>
         </Colxx>
       </Row>
     </>

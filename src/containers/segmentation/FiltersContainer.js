@@ -11,8 +11,14 @@ import { generateInitFilter } from '../../constants/filter';
 import { servicePath } from '../../constants/defaultValues';
 import { NotificationManager } from '../../components/common/react-notifications';
 import { updateFilters } from '../../redux/actions';
+import FiltersParseComponent from '../../components/filters/FiltersParseComponent';
 
-const FiltersContainer = ({ user, twitterUser, updateFiltersAction }) => {
+const FiltersContainer = ({
+  user,
+  twitterUser,
+  updateFiltersAction,
+  // savedFilters,
+}) => {
   const [activeTab, setActiveTab] = useState('filter');
 
   const [filters, setFilters] = useState([generateInitFilter()]);
@@ -21,14 +27,19 @@ const FiltersContainer = ({ user, twitterUser, updateFiltersAction }) => {
   const [error, setError] = useState();
   const [profiles, setProfiles] = useState([]);
   const [totalHits, setTotalHits] = useState(0);
+  const [parse, setParse] = useState(
+    <FiltersParseComponent className="mb-4" filters={filters} />
+  );
   useEffect(() => {
     if (error) {
       NotificationManager.warning(error, 'Server Error', 3000, null, null, '');
       setError('');
     }
   }, [error]);
+
   useEffect(() => {
     updateFiltersAction(filters);
+    setParse(<FiltersParseComponent className="mb-4" filters={filters} />);
   }, [filters, updateFiltersAction]);
   function handleDeleteFilter(i) {
     return () => setFilters((fs) => fs.filter((e, index) => index !== i));
@@ -154,6 +165,9 @@ const FiltersContainer = ({ user, twitterUser, updateFiltersAction }) => {
               </Button>
             </Colxx>
           </Row>
+          {/* <Row>
+            <Colxx>{parse}</Colxx>
+          </Row> */}
           <Row>
             <Colxx xxs="12">
               <Separator className="mb-5" />
@@ -186,6 +200,7 @@ const FiltersContainer = ({ user, twitterUser, updateFiltersAction }) => {
 
 const mapStateToProps = ({ authUser }) => {
   const { user, twitterUser } = authUser;
+  // const { filters: savedFilters } = filters;
   return { user, twitterUser };
 };
 
