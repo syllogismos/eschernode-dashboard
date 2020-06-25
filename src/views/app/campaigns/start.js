@@ -9,6 +9,11 @@ import {
   TabContent,
   Card,
   CardBody,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
@@ -26,6 +31,8 @@ const Start = ({ match, filters, user, twitterUser }) => {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const [dm, setDM] = useState('');
+  const [testModal, setTestModal] = useState(false);
+  const [twitterHandle, setTwitterHandle] = useState('');
 
   useEffect(() => {
     if (error) {
@@ -135,42 +142,93 @@ const Start = ({ match, filters, user, twitterUser }) => {
                   </Row>
                 </Colxx>
                 <Colxx xxs="12" lg="4">
-                  <Card>
-                    <CardBody className="text-center">
-                      <NavLink to="/app/segmentation/filter">
-                        <Button color="primary" className="mb-2 mr-1">
-                          Edit Filter
-                        </Button>
-                      </NavLink>
-                      <Button
-                        color="primary"
-                        className={`mb-2 btn-shadow btn-multiple-state ${
-                          loading ? 'show-spinner' : ''
-                        }`}
-                        onClick={checkFilters}
-                      >
-                        <span className="spinner d-inline-block">
-                          <span className="bounce1" />
-                          <span className="bounce2" />
-                          <span className="bounce3" />
-                        </span>
-                        <span className="label">Check Filter</span>
-                      </Button>
-                    </CardBody>
-                  </Card>
-                  <div className="icon-cards-row">
-                    <div className="icon-row-item mb-4">
+                  <Row>
+                    <Colxx>
                       <Card>
                         <CardBody className="text-center">
-                          <i className="simple-icon-people" />
-                          <p className="card-text font-weight-semibold mb-0">
-                            Users in this Filter
-                          </p>
-                          <p className="lead text-center">{count}</p>
+                          <NavLink to="/app/segmentation/filter">
+                            <Button color="primary" className="mb-2 mr-1">
+                              Edit Filter
+                            </Button>
+                          </NavLink>
+                          <Button
+                            color="primary"
+                            className={`mb-2 btn-shadow btn-multiple-state ${
+                              loading ? 'show-spinner' : ''
+                            }`}
+                            onClick={checkFilters}
+                          >
+                            <span className="spinner d-inline-block">
+                              <span className="bounce1" />
+                              <span className="bounce2" />
+                              <span className="bounce3" />
+                            </span>
+                            <span className="label">Check Filter</span>
+                          </Button>
                         </CardBody>
                       </Card>
-                    </div>
-                  </div>
+                      <div className="icon-cards-row">
+                        <div className="icon-row-item mb-4">
+                          <Card>
+                            <CardBody className="text-center">
+                              <i className="simple-icon-people" />
+                              <p className="card-text font-weight-semibold mb-0">
+                                Users in this Filter
+                              </p>
+                              <p className="lead text-center">{count}</p>
+                            </CardBody>
+                          </Card>
+                        </div>
+                      </div>
+                    </Colxx>
+                  </Row>
+                  <Row>
+                    <Colxx>
+                      <Card>
+                        <CardBody className="text-center">
+                          <Button
+                            className="mb-2 mr-1"
+                            color="primary"
+                            onClick={() => setTestModal(true)}
+                          >
+                            Test Message
+                          </Button>
+                          <Modal
+                            isOpen={testModal}
+                            toggle={() => setTestModal(!testModal)}
+                          >
+                            <ModalHeader>Send a Test DM.</ModalHeader>
+                            <ModalBody>
+                              Twitter Handle:{' '}
+                              <Input
+                                value={twitterHandle}
+                                onChange={(evt) =>
+                                  setTwitterHandle(evt.target.value)
+                                }
+                              />
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button
+                                color="primary"
+                                onClick={() => setTestModal(false)}
+                              >
+                                Send
+                              </Button>{' '}
+                              <Button
+                                color="secondary"
+                                onClick={() => setTestModal(false)}
+                              >
+                                Cancel
+                              </Button>
+                            </ModalFooter>
+                          </Modal>
+                          <Button className="mb-2" color="secondary">
+                            Start Campaign
+                          </Button>
+                        </CardBody>
+                      </Card>
+                    </Colxx>
+                  </Row>
                 </Colxx>
               </Row>
               {/* <Row>

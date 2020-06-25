@@ -95,6 +95,9 @@ const ComposeDM = ({ dm, setDM }) => {
               value={url}
               onChange={handleUrlChange}
             />
+            {/* <InputGroupAddon addonType="append">
+              <Button>Go</Button>
+            </InputGroupAddon> */}
           </InputGroup>
           <InputGroup>
             <InputGroupAddon addonType="prepend">DM</InputGroupAddon>
