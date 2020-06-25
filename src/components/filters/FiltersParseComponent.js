@@ -106,12 +106,24 @@ const FilterParseComponent = ({ filter }) => {
         switch (filter.topicsCondition.value) {
           case 'or':
             return {
-              description: `Get users who mentions any of these topics in their description or recent status ${f.topics}`,
+              description: (
+                <p>
+                  Get users who mentions any of the topics{' '}
+                  <strong>{f.topics}</strong> in their description or recent
+                  status
+                </p>
+              ),
               message: '',
             };
           default:
             return {
-              description: `Get users who mentions all of these topics in their description or recent status ${f.topics}`,
+              description: (
+                <p>
+                  Get users who mentions all of the topics{' '}
+                  <strong>{f.topics}</strong> in their description or recent
+                  status
+                </p>
+              ),
               message: '',
             };
         }

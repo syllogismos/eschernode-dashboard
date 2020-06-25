@@ -55,6 +55,7 @@ const FiltersContainer = ({
     const data = JSON.stringify({
       uid: user,
       filters,
+      size: 30,
       id_str: twitterUser.additionalUserInfo.profile.id_str,
     });
     const config = {
@@ -78,7 +79,7 @@ const FiltersContainer = ({
       })
       .catch((er) => {
         setGetUsersLoading(false);
-        setError(er.response.statusText);
+        setError('Getting users failed');
         console.log(er);
       });
   }
@@ -121,7 +122,12 @@ const FiltersContainer = ({
         <TabPane tabId="filter">
           {filters.map((f, i) => (
             <Row key={f.id}>
-              <Colxx xxs="12" lg="12" className="mb-4" key={f.id}>
+              <Colxx
+                xxs="12"
+                lg="12"
+                className={i === filters.length - 1 ? 'mb-4' : 'mb-1'}
+                key={f.id}
+              >
                 <SingleFilterContainer
                   filters={filters}
                   setFilters={setFilters}
@@ -157,9 +163,11 @@ const FiltersContainer = ({
                 </span>
                 <span className="label">Get Users</span>
               </Button>{' '}
-              <Button className="mb-2 btn-shadow" outline color="primary">
-                Start Messaging Campaign
-              </Button>{' '}
+              <NavLink to="/app/campaigns/start">
+                <Button className="mb-2 btn-shadow" outline color="primary">
+                  Start Messaging Campaign
+                </Button>
+              </NavLink>{' '}
               <Button className="mb-2 btn-shadow" outline color="primary">
                 Save as Custom Filter
               </Button>
