@@ -11,18 +11,25 @@ import {
   DropdownItem,
   DropdownToggle,
   DropdownMenu,
-  Button,
-  Row,
 } from 'reactstrap';
 
-import { Colxx } from '../../components/common/CustomBootstrap';
-
 const dropdownOptions = ['Escher', 'Custom'];
-const ComposeDM = ({ dm, setDM }) => {
-  const [linkCheck, setLinkCheck] = useState(false);
-  const [selectedDropdown, setSelectedDropdown] = useState('Escher');
-  const [text, setText] = useState('');
-  const [url, setURL] = useState('');
+const ComposeDM = ({
+  dm,
+  setDM,
+  linkCheck,
+  setLinkCheck,
+  selectedDropdown,
+  setSelectedDropdown,
+  text,
+  setText,
+  url,
+  setURL,
+}) => {
+  // const [linkCheck, setLinkCheck] = useState(false);
+  // const [selectedDropdown, setSelectedDropdown] = useState('Escher');
+  // const [text, setText] = useState('');
+  // const [url, setURL] = useState('');
   function handleTextChange(evt) {
     setText(evt.target.value);
   }

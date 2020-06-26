@@ -34,6 +34,13 @@ const Start = ({ match, filters, user, twitterUser }) => {
   const [testModal, setTestModal] = useState(false);
   const [twitterHandle, setTwitterHandle] = useState('');
   const [testSendLoading, setTestSendLoading] = useState(false);
+  const [campaignModal, setCampaignModal] = useState(false);
+
+  // compose dm props
+  const [linkCheck, setLinkCheck] = useState(false);
+  const [selectedDropdown, setSelectedDropdown] = useState('Escher');
+  const [text, setText] = useState('');
+  const [url, setURL] = useState('');
 
   useEffect(() => {
     if (error) {
@@ -112,6 +119,36 @@ const Start = ({ match, filters, user, twitterUser }) => {
     setTestSendLoading(false);
   }
 
+  function handleCampaignStart() {
+    const data = JSON.stringify({
+      uid: user,
+      data: {
+        dm,
+        campaignName: 'test',
+        filters,
+        text,
+        url,
+        selectedDropdown,
+        linkCheck,
+      },
+    });
+    const config = {
+      method: 'post',
+      url: `${servicePath}start_campaign`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data,
+    };
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <>
       <Row>
@@ -168,7 +205,18 @@ const Start = ({ match, filters, user, twitterUser }) => {
                   </Row>
                   <Row>
                     <Colxx>
-                      <ComposeDM dm={dm} setDM={setDM} />
+                      <ComposeDM
+                        dm={dm}
+                        setDM={setDM}
+                        linkCheck={linkCheck}
+                        setLinkCheck={setLinkCheck}
+                        selectedDropdown={selectedDropdown}
+                        setSelectedDropdown={setSelectedDropdown}
+                        text={text}
+                        setText={setText}
+                        url={url}
+                        setURL={setURL}
+                      />
                     </Colxx>
                   </Row>
                 </Colxx>
@@ -262,9 +310,46 @@ const Start = ({ match, filters, user, twitterUser }) => {
                               </Button>
                             </ModalFooter>
                           </Modal>
-                          <Button className="mb-2" color="secondary">
+                          <Button
+                            className="mb-2"
+                            color="secondary"
+                            onClick={() => setCampaignModal(true)}
+                          >
                             Start Campaign
                           </Button>
+                          <Modal
+                            isOpen={campaignModal}
+                            toggle={() => setCampaignModal(!campaignModal)}
+                            wrapClassName="modal-right"
+                          >
+                            <ModalHeader>Create New Campaign</ModalHeader>
+                            <ModalBody>
+                              Lorem ipsum dolor sit amet, consectetur
+                              adipisicing elit, sed do eiusmod tempor incididunt
+                              ut labore et dolore magna aliqua. Ut enim ad minim
+                              veniam, quis nostrud exercitation ullamco laboris
+                              nisi ut aliquip ex ea commodo consequat. Duis aute
+                              irure dolor in reprehenderit in voluptate velit
+                              esse cillum dolore eu fugiat nulla pariatur.
+                              Excepteur sint occaecat cupidatat non proident,
+                              sunt in culpa qui officia deserunt mollit anim id
+                              est laborum.
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button
+                                color="primary"
+                                onClick={handleCampaignStart}
+                              >
+                                Start
+                              </Button>{' '}
+                              <Button
+                                color="secondary"
+                                onClick={() => setCampaignModal(false)}
+                              >
+                                Cancel
+                              </Button>
+                            </ModalFooter>
+                          </Modal>
                         </CardBody>
                       </Card>
                     </Colxx>

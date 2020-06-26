@@ -46,7 +46,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload.uid,
+        user: action.payload.user.uid,
         twitterUser: action.payload,
         error: '',
       };

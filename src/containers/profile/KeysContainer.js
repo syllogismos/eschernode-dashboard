@@ -27,16 +27,16 @@ const KeysContainer = (props) => {
     setLoading(true);
 
     async function fetchData() {
-      var data = JSON.stringify({
+      const data = JSON.stringify({
         uid: user,
       });
-      var config = {
+      const config = {
         method: 'post',
-        url: servicePath + 'get_user_details',
+        url: `${servicePath}get_user_details`,
         headers: {
           'Content-Type': 'application/json',
         },
-        data: data,
+        data,
       };
       const result = await axios(config);
       if (result.data.status === 200) {
