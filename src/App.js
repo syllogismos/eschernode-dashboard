@@ -27,6 +27,14 @@ const ViewError = React.lazy(() =>
   import(/* webpackChunkName: "views-error" */ './views/error')
 );
 
+const ViewSubscribe = React.lazy(() =>
+  import(/* webpackChunkName: "views-subscribe" */ './views/subscribe')
+);
+
+const ViewClick = React.lazy(() =>
+  import(/* webpackChunkName: "views-click" */ './views/click')
+);
+
 const AuthRoute = ({ component: Component, authUser, ...rest }) => {
   return (
     <Route
@@ -80,6 +88,14 @@ class App extends React.Component {
                     path="/app"
                     authUser={loginUser}
                     component={ViewApp}
+                  />
+                  <Route
+                    path="/click"
+                    render={(props) => <ViewClick {...props} />}
+                  />
+                  <Route
+                    path="/subscribe"
+                    render={(props) => <ViewSubscribe {...props} />}
                   />
                   <Route
                     path="/user"
