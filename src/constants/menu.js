@@ -1,8 +1,8 @@
 const data = [
   {
-    id: 'dashboards',
+    id: 'home',
     icon: 'iconsminds-air-balloon-1',
-    label: 'menu.dashboards',
+    label: 'menu.home',
     to: '/app/dashboards/start',
     // subs: [
     //   {
@@ -13,7 +13,7 @@ const data = [
     // ],
   },
   {
-    id: 'segmentation',
+    id: 'filters',
     icon: 'iconsminds-filter-2',
     label: 'menu.segmentation',
     to: '/app/segmentation/filter',

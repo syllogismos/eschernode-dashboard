@@ -43,7 +43,7 @@ module.exports = {
   'menu.search': 'Search',
   'menu.docs': 'Docs',
   'menu.blank-page': 'Blank Page',
-  'menu.segmentation': 'Segmentation',
+  'menu.segmentation': 'Filters',
   'menu.campaigns': 'Campaigns',
   'menu.profile': 'Profile',
   'menu.history': 'Past Campaigns',

@@ -17,10 +17,22 @@ const filterData = [
   { label: 'Topics', value: 'topics', key: 4 },
   { label: 'Last Seen', value: 'lastSeen', key: 5 },
   { label: 'From Country', value: 'country', key: 6 },
+  // { label: 'Prioritise By', value: 'prioritiseBy', key: 7 },
+  { label: 'User Flag', value: 'flag', key: 8 },
+];
+
+const flagOptions = [
+  { label: 'Verified', value: 'verified', key: 0 },
+  { label: 'Muted By You', value: 'muting', key: 1 },
+];
+
+const flagConditions = [
+  { label: 'Is', value: 'is', key: 0 },
+  { label: 'Is Not', value: 'not', key: 1 },
 ];
 
 const countryData = [
-  { label: 'United State', value: 'us', key: 0 },
+  { label: 'United States', value: 'us', key: 0 },
   { label: 'India', value: 'in', key: 1 },
   { label: 'United Kingdom', value: 'uk', key: 2 },
 ];
@@ -35,6 +47,17 @@ const numberCondition = [
 const topicsCondition = [
   { label: 'AND', value: 'and', key: 0 },
   { label: 'OR', value: 'or', key: 1 },
+];
+
+const prioritiseOptions = [
+  { label: 'Follow Order', value: 'followOrder', key: 0 },
+  { label: 'Follow Count', value: 'followCount', key: 1 },
+  { label: 'Friend Count', value: 'friendCount', key: 2 },
+];
+
+const prioritiseConditions = [
+  { label: 'Descending', value: 'desc', key: 0 },
+  { label: 'Ascending', valud: 'asc', key: 1 },
 ];
 
 const SingleFilterContainer = (props) => {
@@ -329,6 +352,60 @@ const SingleFilterContainer = (props) => {
                         placeholder="Select a Country..."
                       />
                     </Colxx>
+                  );
+                case 'prioritiseBy':
+                  return (
+                    <>
+                      <Colxx lg="3" xxs="6">
+                        <Select
+                          component={{ Input: CustomSelectInput }}
+                          className="react-select"
+                          classNamePrefix="react-select"
+                          name="prioritiseBy"
+                          value={filter.prioritiseBy}
+                          onChange={handleSelectChange}
+                          options={prioritiseOptions}
+                        />
+                      </Colxx>
+                      <Colxx lg="2" xxs="4">
+                        <Select
+                          component={{ Input: CustomSelectInput }}
+                          className="react-select"
+                          classNamePrefix="react-select"
+                          name="prioritiseCondition"
+                          value={filter.prioritiseCondition}
+                          onChange={handleSelectChange}
+                          options={prioritiseConditions}
+                        />
+                      </Colxx>
+                    </>
+                  );
+                case 'flag':
+                  return (
+                    <>
+                      <Colxx lg="2" xxs="4">
+                        <Select
+                          component={{ Input: CustomSelectInput }}
+                          className="react-select"
+                          classNamePrefix="react-select"
+                          name="flagCondition"
+                          value={filter.flagCondition}
+                          onChange={handleSelectChange}
+                          options={flagConditions}
+                        />
+                      </Colxx>
+                      <Colxx lg="3" xxs="6">
+                        <Select
+                          component={{ Input: CustomSelectInput }}
+                          className="react-select"
+                          classNamePrefix="react-select"
+                          name="flagOption"
+                          value={filter.flagOption}
+                          onChange={handleSelectChange}
+                          options={flagOptions}
+                        />
+                      </Colxx>
+                    </>
                   );
                 default:
                   return <></>;

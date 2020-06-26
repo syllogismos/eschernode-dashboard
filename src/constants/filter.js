@@ -44,6 +44,26 @@ export const filterInitialState = {
   // startDate: new Date(),
   // endDate: new Date(),
   topics: [],
+  prioritiseBy: {
+    label: 'Follow Order',
+    value: 'followOrder',
+    key: 0,
+  },
+  prioritiseCondition: {
+    label: 'Descending',
+    value: 'desc',
+    key: 0,
+  },
+  flagOption: {
+    label: 'Verified',
+    value: 'verified',
+    key: 0,
+  },
+  flagCondition: {
+    label: 'Is',
+    value: 'is',
+    key: 0,
+  },
 };
 
 export const filterCopy = JSON.parse(JSON.stringify(filterInitialState));

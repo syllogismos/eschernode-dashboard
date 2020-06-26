@@ -127,7 +127,37 @@ const FilterParseComponent = ({ filter }) => {
               message: '',
             };
         }
-
+      case 'flag':
+        switch (filter.flagCondition) {
+          case 'is':
+            switch (filter.flagOption.value) {
+              case 'verified':
+                return {
+                  description: 'Get Users who are verified',
+                  message: '',
+                };
+              default:
+                return { description: 'Get Users who are muted', message: '' };
+            }
+          default:
+            switch (filter.flagOption.value) {
+              case 'verified':
+                return {
+                  description: 'Get Users who are not verified',
+                  message: '',
+                };
+              default:
+                return {
+                  description: 'Get Users who are not muted',
+                  message: '',
+                };
+            }
+        }
+      case 'country':
+        return {
+          description: `Get Users who are from ${f.selectedCountry.label}`,
+          message: '',
+        };
       default:
         return {
           description: 'This filter not supported yet',
