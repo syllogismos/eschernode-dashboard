@@ -66,6 +66,27 @@ export const filterInitialState = {
   },
 };
 
+export const sourceFields = [
+  'id_str',
+  'name',
+  'screen_name',
+  'location',
+  'description',
+  'url',
+  'followers_count',
+  'friends_count',
+  'created_at',
+  'verified',
+  'statuses_count',
+  'favourites_count',
+  'status.created_at',
+  'profile_image_url',
+  'muting',
+  'blocking',
+  'follow_order',
+  'escher_account',
+];
+
 export const filterCopy = JSON.parse(JSON.stringify(filterInitialState));
 
 export function generateInitFilter() {

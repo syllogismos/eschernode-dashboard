@@ -8,6 +8,8 @@ import Breadcrumb from '../../../containers/navs/Breadcrumb';
 import ProfileComponent from '../../../components/profile/ProfileComponent';
 import StatCard from '../../../containers/home/StatCard';
 import { servicePath } from '../../../constants/defaultValues';
+import { sourceFields } from '../../../constants/filter';
+import ProfileListComponent from '../../../components/profile/ProfileListComponent';
 
 const NavButtons = () => <></>;
 
@@ -19,6 +21,7 @@ const Start = ({ match, twitterUser, user }) => {
 
   useEffect(() => {
     const query = {
+      _source: sourceFields,
       size: 30,
       query: {
         term: {
@@ -68,7 +71,7 @@ const Start = ({ match, twitterUser, user }) => {
             <Colxx>
               <div className="mb-4">
                 <p className="mb-2">
-                  Downloading Users Progress
+                  Downloading Followers Progress
                   <span className="float-right text-muted">
                     {userCount}/{followers_count}
                   </span>
@@ -90,12 +93,12 @@ const Start = ({ match, twitterUser, user }) => {
                   </NavLink>
                   <NavLink to="/app/segmentation/filter">
                     <Button color="primary" outline className="mr-2">
-                      Filter Your Users
+                      Filter Your Followers
                     </Button>
                   </NavLink>
                   <NavLink to="/app/campaigns/start">
                     <Button color="primary" outline className="mr-2">
-                      Start a Messaging Campaign
+                      Start a targetted Messaging Campaign
                     </Button>
                   </NavLink>
                 </CardBody>
@@ -103,10 +106,21 @@ const Start = ({ match, twitterUser, user }) => {
             </Colxx>
           </Row>
         </Colxx>
-
         <Colxx xxs="12" lg="4" className="mb-4">
           <ProfileComponent />
         </Colxx>
+      </Row>
+      <Separator className="mb-2" />
+      <Row>
+        {users.length > 0 ? (
+          <Colxx xxs="12">
+            <h3>Your Followers</h3>
+
+            <ProfileListComponent profiles={users} totalHits={userCount} />
+          </Colxx>
+        ) : (
+          <></>
+        )}
       </Row>
     </>
   );

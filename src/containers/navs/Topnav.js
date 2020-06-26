@@ -269,10 +269,16 @@ const TopNav = ({
               </span>
             </DropdownToggle>
             <DropdownMenu className="mt-3" right>
-              <DropdownItem>Account</DropdownItem>
-              <DropdownItem>Features</DropdownItem>
-              <DropdownItem>History</DropdownItem>
-              <DropdownItem>Support</DropdownItem>
+              <NavLink to="/app/profile/settings">
+                <DropdownItem>Account</DropdownItem>
+              </NavLink>
+              <NavLink to="/app">
+                <DropdownItem>Features</DropdownItem>
+              </NavLink>
+              {/* <DropdownItem>History</DropdownItem> */}
+              <NavLink to="#">
+                <DropdownItem>Support</DropdownItem>
+              </NavLink>
               <DropdownItem divider />
               <DropdownItem onClick={() => handleLogout()}>
                 Sign out
