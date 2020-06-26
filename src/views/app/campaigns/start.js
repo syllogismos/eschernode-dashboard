@@ -38,9 +38,12 @@ const Start = ({ match, filters, user, twitterUser }) => {
 
   // compose dm props
   const [linkCheck, setLinkCheck] = useState(false);
-  const [selectedDropdown, setSelectedDropdown] = useState('Escher');
+  const [selectedDropdown, setSelectedDropdown] = useState('Subscribe');
   const [text, setText] = useState('');
   const [url, setURL] = useState('');
+
+  // create campaign state
+  const [campaignName, setCampaignName] = useState('New Campaign');
 
   useEffect(() => {
     if (error) {
@@ -49,6 +52,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
     }
   }, [error]);
   useEffect(() => {
+    // to update count
     setLoading(true);
     const data = JSON.stringify({
       uid: user,
@@ -94,6 +98,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
     const data = JSON.stringify({
       uid: user,
       twitterHandle,
+      id_str: twitterUser.additionalUserInfo.profile.id_str,
       dm,
     });
     const config = {
@@ -124,7 +129,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
       uid: user,
       data: {
         dm,
-        campaignName: 'test',
+        campaignName,
         filters,
         text,
         url,
@@ -216,6 +221,9 @@ const Start = ({ match, filters, user, twitterUser }) => {
                         setText={setText}
                         url={url}
                         setURL={setURL}
+                        screenName={
+                          twitterUser.additionalUserInfo.profile.screen_name
+                        }
                       />
                     </Colxx>
                   </Row>
@@ -324,16 +332,22 @@ const Start = ({ match, filters, user, twitterUser }) => {
                           >
                             <ModalHeader>Create New Campaign</ModalHeader>
                             <ModalBody>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat. Duis aute
-                              irure dolor in reprehenderit in voluptate velit
-                              esse cillum dolore eu fugiat nulla pariatur.
-                              Excepteur sint occaecat cupidatat non proident,
-                              sunt in culpa qui officia deserunt mollit anim id
-                              est laborum.
+                              <Card>
+                                <CardBody>
+                                  Name:{' '}
+                                  <Input
+                                    value={campaignName}
+                                    onChange={(evt) =>
+                                      setCampaignName(evt.target.value)
+                                    }
+                                  />
+                                  <Separator className="mt-4 mb-2" />
+                                  Message: <b>{dm}</b>
+                                  <Separator className="mt-4 mb-2" />
+                                  No of users you are sending this message to:{' '}
+                                  {count}
+                                </CardBody>
+                              </Card>
                             </ModalBody>
                             <ModalFooter>
                               <Button

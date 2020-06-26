@@ -32,7 +32,7 @@ const StatCard = ({
             },
             {
               range: {
-                created_at: {
+                t: {
                   gte: d,
                 },
               },

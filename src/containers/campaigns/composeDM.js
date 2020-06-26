@@ -13,7 +13,7 @@ import {
   DropdownMenu,
 } from 'reactstrap';
 
-const dropdownOptions = ['Escher', 'Custom'];
+const dropdownOptions = ['Subscribe', 'Custom'];
 const ComposeDM = ({
   dm,
   setDM,
@@ -25,6 +25,7 @@ const ComposeDM = ({
   setText,
   url,
   setURL,
+  screenName,
 }) => {
   // const [linkCheck, setLinkCheck] = useState(false);
   // const [selectedDropdown, setSelectedDropdown] = useState('Escher');
@@ -39,8 +40,8 @@ const ComposeDM = ({
 
   useEffect(() => {
     switch (selectedDropdown) {
-      case 'Escher':
-        setURL('http://eschernode.com');
+      case 'Subscribe':
+        setURL(`http://eschernode.com/subscribe/${screenName}`);
         break;
       case 'Custom':
         setURL('');
@@ -98,7 +99,7 @@ const ComposeDM = ({
               </DropdownMenu>
             </UncontrolledDropdown>
             <Input
-              disabled={!linkCheck || selectedDropdown === 'Escher'}
+              disabled={!linkCheck || selectedDropdown === 'Subscribe'}
               value={url}
               onChange={handleUrlChange}
             />
