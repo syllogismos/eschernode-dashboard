@@ -48,7 +48,7 @@ const ComposeDM = ({
       default:
         break;
     }
-  }, [selectedDropdown]);
+  }, [selectedDropdown, setURL]);
 
   useEffect(() => {
     setDM(linkCheck ? `${text} ${url}` : text);

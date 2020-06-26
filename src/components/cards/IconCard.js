@@ -9,7 +9,8 @@ const IconCard = ({ className = 'mb-4', icon, title, value }) => {
         <CardBody className="text-center">
           <i className={icon} />
           <p className="card-text font-weight-semibold mb-0">
-            <IntlMessages id={title} />
+            {/* <IntlMessages id={title} /> */}
+            {title}
           </p>
           <p className="lead text-center">{value}</p>
         </CardBody>
