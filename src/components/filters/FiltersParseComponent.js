@@ -109,8 +109,8 @@ const FilterParseComponent = ({ filter }) => {
               description: (
                 <p>
                   Get users who mentions any of the topics{' '}
-                  <strong>{f.topics}</strong> in their description or recent
-                  status
+                  <strong>{f.topics.join(', ')}</strong> in their description or
+                  recent status
                 </p>
               ),
               message: '',
@@ -120,8 +120,8 @@ const FilterParseComponent = ({ filter }) => {
               description: (
                 <p>
                   Get users who mentions all of the topics{' '}
-                  <strong>{f.topics}</strong> in their description or recent
-                  status
+                  <strong>{f.topics.join(', ')}</strong> in their description or
+                  recent status
                 </p>
               ),
               message: '',
