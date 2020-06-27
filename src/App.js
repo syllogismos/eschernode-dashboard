@@ -13,6 +13,12 @@ import ColorSwitcher from './components/common/ColorSwitcher';
 import { NotificationContainer } from './components/common/react-notifications';
 import { isMultiColorActive, isDemo } from './constants/defaultValues';
 import { getDirection } from './helpers/Utils';
+import ReactGA from 'react-ga';
+
+function initializeReactGA() {
+  ReactGA.initialize('UA-171066872-1');
+  ReactGA.pageview('/dashboard');
+}
 
 const ViewMain = React.lazy(() =>
   import(/* webpackChunkName: "views" */ './views')
@@ -36,6 +42,7 @@ const ViewClick = React.lazy(() =>
 );
 
 const AuthRoute = ({ component: Component, authUser, ...rest }) => {
+  initializeReactGA();
   return (
     <Route
       {...rest}
