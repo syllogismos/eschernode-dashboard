@@ -353,6 +353,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
                               <Button
                                 color="primary"
                                 onClick={handleCampaignStart}
+                                disabled={true}
                               >
                                 Start
                               </Button>{' '}
