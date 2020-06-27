@@ -25,7 +25,10 @@ export const firebaseConfig = {
 };
 
 export const searchPath = '#';
-export const servicePath = 'http://127.0.0.1:8000/api/';
+export const servicePath =
+  process.env.NODE_ENV === 'development'
+    ? 'http://127.0.0.1:8000/api/'
+    : 'https://api.eschernode.com/api/';
 
 export const themeColorStorageKey = '__theme_selected_color';
 export const isMultiColorActive = false;
