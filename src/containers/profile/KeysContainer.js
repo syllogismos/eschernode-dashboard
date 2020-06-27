@@ -11,14 +11,16 @@ import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { servicePath } from '../../constants/defaultValues';
+import { NotificationManager } from '../../components/common/react-notifications';
 
 const KeysContainer = (props) => {
-  const [keys, setKeys] = useState({
+  const [userDetails, setUserDetails] = useState({
     api_key: '',
     api_secret: '',
     access_token: '',
     access_token_secret: '',
     twitter_id: '',
+    index_status: '',
   });
   const [loading, setLoading] = useState(false);
   const { user, twitterUser } = props;
@@ -40,7 +42,7 @@ const KeysContainer = (props) => {
       };
       const result = await axios(config);
       if (result.data.status === 200) {
-        setKeys((k) => {
+        setUserDetails((k) => {
           return { ...k, ...result.data.userdetails };
         });
         console.log(result);
@@ -51,21 +53,33 @@ const KeysContainer = (props) => {
     fetchData();
   }, [user]);
   const initialValues = {
-    apiKey: keys.api_key,
-    apiSecret: keys.api_secret,
-    accessToken: keys.access_token,
-    accessTokenSecret: keys.access_token_secret,
+    apiKey: userDetails.api_key,
+    apiSecret: userDetails.api_secret,
+    accessToken: userDetails.access_token,
+    accessTokenSecret: userDetails.access_token_secret,
   };
 
   function handleUpdate(values) {
     setLoading(true);
+    if (userDetails.index_status === 'indexing') {
+      NotificationManager.warning(
+        'Cant update keys when you are downloading users',
+        'Update Error',
+        3000,
+        null,
+        null,
+        ''
+      );
+      setLoading(false);
+      return;
+    }
     const data = JSON.stringify({
       uid: user,
       data: {
-        api_key: keys.api_key,
-        api_secret: keys.api_secret,
-        access_token: keys.access_token,
-        access_token_secret: keys.access_token_secret,
+        api_key: userDetails.api_key,
+        api_secret: userDetails.api_secret,
+        access_token: userDetails.access_token,
+        access_token_secret: userDetails.access_token_secret,
         twitter_id: twitterUser.additionalUserInfo.profile.id_str,
       },
     });
@@ -88,9 +102,37 @@ const KeysContainer = (props) => {
       });
   }
 
+  function handleStartIndexing() {
+    setUserDetails((u) => {
+      return { ...u, index_status: 'indexing' };
+    });
+    const data = JSON.stringify({
+      uid: user,
+    });
+    const config = {
+      method: 'post',
+      url: `${servicePath}start_index_users`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data,
+    };
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((err) => {
+        console.log('error while calling calling index users url');
+        console.log(err);
+        setUserDetails((u) => {
+          return { ...u, index_status: '' };
+        });
+      });
+  }
+
   function handleChange(evt) {
     const { value } = evt.target;
-    setKeys({ ...keys, [evt.target.name]: value });
+    setUserDetails({ ...userDetails, [evt.target.name]: value });
   }
   return (
     <>
@@ -107,7 +149,7 @@ const KeysContainer = (props) => {
                     disabled={loading}
                     className="form-control"
                     name="api_key"
-                    value={keys.api_key}
+                    value={userDetails.api_key}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -117,7 +159,7 @@ const KeysContainer = (props) => {
                     disabled={loading}
                     className="form-control"
                     name="api_secret"
-                    value={keys.api_secret}
+                    value={userDetails.api_secret}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -127,7 +169,7 @@ const KeysContainer = (props) => {
                     disabled={loading}
                     className="form-control"
                     name="access_token"
-                    value={keys.access_token}
+                    value={userDetails.access_token}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -137,14 +179,14 @@ const KeysContainer = (props) => {
                     disabled={loading}
                     className="form-control"
                     name="access_token_secret"
-                    value={keys.access_token_secret}
+                    value={userDetails.access_token_secret}
                     onChange={handleChange}
                   />
                 </FormGroup>
                 <Button
                   color="primary"
                   type="submit"
-                  className={`btn-shadow btn-multiple-state ${
+                  className={`btn-shadow mr-2 btn-multiple-state ${
                     loading ? 'show-spinner' : ''
                   }`}
                   size="lg"
@@ -155,6 +197,17 @@ const KeysContainer = (props) => {
                     <span className="bounce3" />
                   </span>
                   <span className="label">Update</span>
+                </Button>
+                <Button
+                  type="button"
+                  size="lg"
+                  disabled={loading || userDetails.index_status === 'indexing'}
+                  className="mr-2"
+                  onClick={handleStartIndexing}
+                >
+                  {userDetails.index_status === 'indexing'
+                    ? 'Indexing Followers'
+                    : 'Start Indexing Followers'}
                 </Button>
               </Form>
             )}
