@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import AppLayout from '../../layout/AppLayout';
 
 const Dashboards = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-gogo" */ './dashboards')
+  import(/* webpackChunkName: "views-gogo" */ './dashboards')
 );
 const Segmentation = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-second-menu" */ './segmentation')
+  import(/* webpackChunkName: "views-second-menu" */ './segmentation')
 );
 const BlankPage = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-blank-page" */ './blank-page')
+  import(/* webpackChunkName: "views-blank-page" */ './blank-page')
 );
 
 const Campaigns = React.lazy(() =>
@@ -33,6 +33,7 @@ const App = ({ match }) => {
               from={`${match.url}/`}
               to={`${match.url}/dashboards`}
             />
+            <Redirect exact from={match.url} to={`${match.url}/dashboards`} />
             <Route
               path={`${match.url}/dashboards`}
               render={(props) => <Dashboards {...props} />}
