@@ -183,6 +183,10 @@ const KeysContainer = (props) => {
                     onChange={handleChange}
                   />
                 </FormGroup>
+                <Label>
+                  You don't need to put in your keys to start indexing your
+                  followers
+                </Label>
                 <Button
                   color="primary"
                   type="submit"
