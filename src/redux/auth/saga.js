@@ -1,4 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import axios from 'axios';
+import { servicePath } from '../../constants/defaultValues';
 
 import { auth, twitterAuthProvider } from '../../helpers/Firebase';
 import {
@@ -54,10 +56,32 @@ export function* watchLoginUserTwitter() {
   yield takeEvery(LOGIN_USER_TWITTER, loginWithTwitter);
 }
 
+const updateUserDetails = async (authUser) => {
+  const data = JSON.stringify({ uid: authUser.user.uid, data: authUser });
+  const config = {
+    method: 'post',
+    url: `${servicePath}update_user_details`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data,
+  };
+  axios(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data.message));
+    })
+    .catch((error) => {
+      console.log('error while storing twitter data during signup', error);
+    });
+};
+
 const loginWithTwitterAsync = async (provider) =>
   await auth
     .signInWithPopup(provider)
-    .then((authUser) => authUser)
+    .then((authUser) => {
+      updateUserDetails(authUser);
+      return authUser;
+    })
     .catch((error) => error);
 
 function* loginWithTwitter({ payload }) {
