@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Colxx } from '../common/CustomBootstrap';
 
 const ThumbListView = ({ profile, collect }) => {
-  const profileImageURL = profile._source.profile_image_url.replace(
+  const profileImageURL = profile._source.profile_image_url_https.replace(
     'normal',
     '400x400'
   );
@@ -58,7 +58,7 @@ const ThumbListView = ({ profile, collect }) => {
 
 export default ThumbListView;
 
-// const profileImageURL = profileInfo.profile_image_url.replace(
+// const profileImageURL = profileInfo.profile_image_url_https.replace(
 //   'normal',
 //   '400x400'
 // );
@@ -69,7 +69,7 @@ export default ThumbListView;
 //   "verified" : false,
 //   "description" : "Principal Researcher @ Microsoft Research AI. Robotics, Reinforcement Learning, Control, Vision and Autonomous Vehicles.",
 //   "created_at" : "2011-07-25T15:56:59",
-//   "profile_image_url" : "http://pbs.twimg.com/profile_images/590174349677703168/A8682S-s_normal.jpg",
+//   "profile_image_url_https" : "http://pbs.twimg.com/profile_images/590174349677703168/A8682S-s_normal.jpg",
 //   "url" : "https://t.co/fh3fyvx1tI",
 //   "muting" : false,
 //   "screen_name" : "debadeepta",

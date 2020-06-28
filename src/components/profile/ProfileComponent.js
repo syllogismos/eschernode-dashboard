@@ -4,7 +4,7 @@ import { Card, CardBody, CardImg } from 'reactstrap';
 
 const ProfileComponent = ({ twitterUser }) => {
   const profileInfo = twitterUser.additionalUserInfo.profile;
-  const profileImageURL = profileInfo.profile_image_url.replace(
+  const profileImageURL = profileInfo.profile_image_url_https.replace(
     'normal',
     '400x400'
   );

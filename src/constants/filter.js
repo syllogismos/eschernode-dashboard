@@ -80,7 +80,7 @@ export const sourceFields = [
   'statuses_count',
   'favourites_count',
   'status.created_at',
-  'profile_image_url',
+  'profile_image_url_https',
   'muting',
   'blocking',
   'follow_order',

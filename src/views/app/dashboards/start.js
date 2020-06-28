@@ -88,7 +88,7 @@ const Start = ({ match, twitterUser, user }) => {
                 <CardBody>
                   <NavLink to="/app/profile/settings">
                     <Button color="primary" outline className="mr-2 mb-2">
-                      Update Keys
+                      Start Indexing Followers.
                     </Button>
                   </NavLink>
                   <NavLink to="/app/segmentation/filter">
