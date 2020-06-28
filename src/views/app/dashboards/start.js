@@ -87,17 +87,17 @@ const Start = ({ match, twitterUser, user }) => {
               <Card>
                 <CardBody>
                   <NavLink to="/app/profile/settings">
-                    <Button color="primary" outline className="mr-2">
+                    <Button color="primary" outline className="mr-2 mb-2">
                       Update Keys
                     </Button>
                   </NavLink>
                   <NavLink to="/app/segmentation/filter">
-                    <Button color="primary" outline className="mr-2">
+                    <Button color="primary" outline className="mr-2 mb-2">
                       Filter Your Followers
                     </Button>
                   </NavLink>
                   <NavLink to="/app/campaigns/start">
-                    <Button color="primary" outline className="mr-2">
+                    <Button color="primary" outline className="mr-2 mb-2">
                       Start a targetted Messaging Campaign
                     </Button>
                   </NavLink>

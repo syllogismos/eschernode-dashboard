@@ -91,17 +91,17 @@ const StatCard = ({
         <div>
           <IconCard
             className="mb-4"
-            icon="iconsminds-mail-send"
-            title="DM's sent in the last day"
-            value={dmsCount}
+            icon="iconsminds-male-female"
+            title="Users downloaded"
+            value={usersCount}
           />
         </div>
         <div>
           <IconCard
             className="mb-4"
-            icon="iconsminds-male-female"
-            title="Users downloaded"
-            value={usersCount}
+            icon="iconsminds-mail-send"
+            title="DM's sent in the last day"
+            value={dmsCount}
           />
         </div>
       </GlideComponent>

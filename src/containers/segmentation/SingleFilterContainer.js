@@ -45,8 +45,8 @@ const numberCondition = [
 ];
 
 const topicsCondition = [
-  { label: 'AND', value: 'and', key: 0 },
-  { label: 'OR', value: 'or', key: 1 },
+  { label: 'And', value: 'and', key: 0 },
+  { label: 'Or', value: 'or', key: 1 },
 ];
 
 const prioritiseOptions = [
@@ -145,7 +145,7 @@ const SingleFilterContainer = (props) => {
       <Card>
         <CardBody>
           <Row>
-            <Colxx lg="3" xxs="12">
+            <Colxx lg="3" xxs="12" className="mb-1">
               <Select
                 components={{ Input: CustomSelectInput }}
                 className="react-select"
@@ -166,7 +166,7 @@ const SingleFilterContainer = (props) => {
                 case 'twitterHandle':
                   return (
                     <>
-                      <Colxx lg="1" xxs="1">
+                      <Colxx lg="1" xxs="6" className="mb-1">
                         <Select
                           components={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -177,7 +177,7 @@ const SingleFilterContainer = (props) => {
                           options={stringCondition}
                         />
                       </Colxx>
-                      <Colxx lg="3" xxs="12">
+                      <Colxx lg="3" xxs="12" className="mb-1">
                         <Input
                           name="twitterHandle"
                           value={filter.twitterHandle}
@@ -189,7 +189,7 @@ const SingleFilterContainer = (props) => {
                 case 'followerCount':
                   return (
                     <>
-                      <Colxx lg="2" xxs="1">
+                      <Colxx lg="2" xxs="6" className="mb-1">
                         <Select
                           components={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -202,14 +202,14 @@ const SingleFilterContainer = (props) => {
                       </Colxx>
                       {filter.followerCountCondition.value === 'inBetween' ? (
                         <>
-                          <Colxx lg="2" xxs="6">
+                          <Colxx lg="2" xxs="6" className="mb-1">
                             <Input
                               name="followerCount"
                               value={filter.followerCount}
                               onChange={handleChange}
                             />
                           </Colxx>
-                          <Colxx lg="2" xxs="6">
+                          <Colxx lg="2" xxs="6" className="mb-1">
                             <Input
                               name="followerCount1"
                               value={filter.followerCount1}
@@ -218,7 +218,7 @@ const SingleFilterContainer = (props) => {
                           </Colxx>
                         </>
                       ) : (
-                        <Colxx lg="3" xxs="6">
+                        <Colxx lg="3" xxs="6" className="mb-1">
                           <Input
                             name="followerCount"
                             value={filter.followerCount}
@@ -231,7 +231,7 @@ const SingleFilterContainer = (props) => {
                 case 'friendCount':
                   return (
                     <>
-                      <Colxx lg="2" xxs="1">
+                      <Colxx lg="2" xxs="6" className="mb-1">
                         <Select
                           components={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -244,14 +244,14 @@ const SingleFilterContainer = (props) => {
                       </Colxx>
                       {filter.friendCountCondition.value === 'inBetween' ? (
                         <>
-                          <Colxx lg="2" xxs="6">
+                          <Colxx lg="2" xxs="6" className="mb-1">
                             <Input
                               name="friendCount"
                               value={filter.friendCount}
                               onChange={handleChange}
                             />
                           </Colxx>
-                          <Colxx lg="2" xxs="6">
+                          <Colxx lg="2" xxs="6" className="mb-1">
                             <Input
                               name="friendCount1"
                               value={filter.friendCount1}
@@ -260,7 +260,7 @@ const SingleFilterContainer = (props) => {
                           </Colxx>
                         </>
                       ) : (
-                        <Colxx lg="3" xxs="6">
+                        <Colxx lg="3" xxs="6" className="mb-1">
                           <Input
                             name="friendCount"
                             value={filter.friendCount}
@@ -273,7 +273,7 @@ const SingleFilterContainer = (props) => {
                 case 'topics':
                   return (
                     <>
-                      <Colxx lg="2" xxs="2">
+                      <Colxx lg="2" xxs="4" className="mb-1">
                         <Select
                           components={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -284,7 +284,7 @@ const SingleFilterContainer = (props) => {
                           options={topicsCondition}
                         />
                       </Colxx>
-                      <Colxx lg="5" xss="6">
+                      <Colxx lg="5" xss="6" className="mb-1">
                         <TagsInput
                           value={filter.topics}
                           onChange={handleTopicsChange}
@@ -299,7 +299,7 @@ const SingleFilterContainer = (props) => {
                 case 'lastSeen':
                   return (
                     <>
-                      <Colxx lg="2" xxs="1">
+                      <Colxx lg="2" xxs="6" className="mb-1">
                         <Select
                           components={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -312,14 +312,14 @@ const SingleFilterContainer = (props) => {
                       </Colxx>
                       {filter.lastSeenCondition.value === 'inBetween' ? (
                         <>
-                          <Colxx lg="3" xxs="6">
+                          <Colxx lg="3" xxs="6" className="mb-1">
                             <DatePicker
                               selected={filter.startDate}
                               name="startDate"
                               onChange={handleStartDateChange}
                             />
                           </Colxx>
-                          <Colxx lg="3" xxs="6">
+                          <Colxx lg="3" xxs="6" className="mb-1">
                             <DatePicker
                               selected={filter.endDate}
                               name="endDate"
@@ -328,7 +328,7 @@ const SingleFilterContainer = (props) => {
                           </Colxx>
                         </>
                       ) : (
-                        <Colxx lg="3" xxs="6">
+                        <Colxx lg="3" xxs="6" className="mb-1">
                           <DatePicker
                             selected={filter.startDate}
                             name="startDate"
@@ -340,7 +340,7 @@ const SingleFilterContainer = (props) => {
                   );
                 case 'country':
                   return (
-                    <Colxx lg="3" xxs="6">
+                    <Colxx lg="3" xxs="12" className="mb-1">
                       <Select
                         components={{ Input: CustomSelectInput }}
                         className="react-select"
@@ -356,7 +356,7 @@ const SingleFilterContainer = (props) => {
                 case 'prioritiseBy':
                   return (
                     <>
-                      <Colxx lg="3" xxs="6">
+                      <Colxx lg="3" xxs="6" className="mb-1">
                         <Select
                           component={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -367,7 +367,7 @@ const SingleFilterContainer = (props) => {
                           options={prioritiseOptions}
                         />
                       </Colxx>
-                      <Colxx lg="2" xxs="4">
+                      <Colxx lg="2" xxs="4" className="mb-1">
                         <Select
                           component={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -383,7 +383,7 @@ const SingleFilterContainer = (props) => {
                 case 'flag':
                   return (
                     <>
-                      <Colxx lg="2" xxs="4">
+                      <Colxx lg="2" xxs="4" className="mb-1">
                         <Select
                           component={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -394,7 +394,7 @@ const SingleFilterContainer = (props) => {
                           options={flagConditions}
                         />
                       </Colxx>
-                      <Colxx lg="3" xxs="6">
+                      <Colxx lg="3" xxs="6" className="mb-1">
                         <Select
                           component={{ Input: CustomSelectInput }}
                           className="react-select"
@@ -412,7 +412,7 @@ const SingleFilterContainer = (props) => {
               }
             })()}
             {closeButton ? (
-              <Colxx lg="1" className="col-right">
+              <Colxx lg="1" className="col-right" className="mb-1">
                 <Button
                   className="btn calendar-prev-btn mr-1"
                   onClick={handleDeleteFilter(i)}

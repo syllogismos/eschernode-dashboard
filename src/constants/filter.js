@@ -12,7 +12,7 @@ export const filterInitialState = {
   friendCount: 0,
   friendCount1: 0,
   topicsCondition: {
-    label: 'AND',
+    label: 'And',
     value: 'and',
     key: 0,
   },
