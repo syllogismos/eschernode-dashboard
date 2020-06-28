@@ -56,8 +56,11 @@ export function* watchLoginUserTwitter() {
   yield takeEvery(LOGIN_USER_TWITTER, loginWithTwitter);
 }
 
-const updateUserDetails = async (authUser) => {
-  const data = JSON.stringify({ uid: authUser.user.uid, data: authUser });
+const updateUserDetails = async (twitterUser) => {
+  const data = JSON.stringify({
+    uid: twitterUser.user.uid,
+    data: { twitterUser },
+  });
   const config = {
     method: 'post',
     url: `${servicePath}update_user_details`,
