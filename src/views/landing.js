@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row } from 'reactstrap';
+import ReactGA from 'react-ga';
 import JumbotronUi from '../components/landing/jumbotron';
 import { Colxx } from '../components/common/CustomBootstrap';
 import Footer from '../containers/navs/Footer';
@@ -14,6 +15,7 @@ const Landing = () => {
   //     document.body.classList.remove('no-footer');
   //   };
   // }, []);
+  ReactGA.pageview('/landingpage');
 
   return (
     <>
