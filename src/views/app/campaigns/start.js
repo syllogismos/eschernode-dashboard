@@ -37,6 +37,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
   const [testSendLoading, setTestSendLoading] = useState(false);
   const [campaignModal, setCampaignModal] = useState(false);
   const [selectedCampaign, setSelectedCampaign] = useState('');
+  const [startCampaignLoading, setStartCampaignLoading] = useState(false);
 
   // compose dm props
   const [linkCheck, setLinkCheck] = useState(false);
@@ -127,6 +128,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
   }
 
   function handleCampaignStart() {
+    setStartCampaignLoading(true);
     const data = JSON.stringify({
       uid: user,
       data: {
@@ -151,8 +153,12 @@ const Start = ({ match, filters, user, twitterUser }) => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         setSelectedCampaign(response.data.campaign);
+        setStartCampaignLoading(false);
+        setCampaignModal(false);
+        setActiveTab('past');
       })
       .catch((err) => {
+        setStartCampaignLoading(false);
         console.log(err);
       });
   }
@@ -355,10 +361,18 @@ const Start = ({ match, filters, user, twitterUser }) => {
                             <ModalFooter>
                               <Button
                                 color="primary"
+                                className={`btn-shadow btn-multiple-state ${
+                                  startCampaignLoading ? 'show-spinner' : ''
+                                }`}
                                 onClick={handleCampaignStart}
                                 // disabled={true}
                               >
-                                Start
+                                <span className="spinner d-inline-block">
+                                  <span className="bounce1" />
+                                  <span className="bounce2" />
+                                  <span className="bounce3" />
+                                </span>
+                                <span className="label">Start</span>
                               </Button>{' '}
                               <Button
                                 color="secondary"
