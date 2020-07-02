@@ -1,17 +1,16 @@
 import React from 'react';
 import { Card, Badge } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
 import { Colxx } from '../common/CustomBootstrap';
 
-const ThumbListView = ({ profile, collect }) => {
+const ThumbListView = ({ profile }) => {
   const profileImageURL = profile._source.profile_image_url_https.replace(
     'normal',
     '400x400'
   );
   const profileUrl = `https://twitter.com/${profile._source.screen_name}`;
   return (
-    <Colxx xxs="12" className="mb-3" key={profile._id}>
+    <Colxx xxs="12" className="mb-1" key={profile._id}>
       <Card className={classnames('d-flex flex-row', { active: true })}>
         <div className="d-flex">
           <a className="btn-link" href={profileUrl}>
@@ -23,7 +22,7 @@ const ThumbListView = ({ profile, collect }) => {
           </a>
         </div>
         <div className="pl-2 d-flex flex-grow-1 min-width-zero">
-          <div className="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero aligh-items-lg-center">
+          <div className="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
             <div className="w-15 w-sm-100">
               <p className="list-item-heading mb-1 truncate">
                 {profile._source.name}

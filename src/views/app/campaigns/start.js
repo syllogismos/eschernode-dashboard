@@ -24,9 +24,10 @@ import Breadcrumb from '../../../containers/navs/Breadcrumb';
 import FiltersParseComponent from '../../../components/filters/FiltersParseComponent';
 import ComposeDM from '../../../containers/campaigns/composeDM';
 import { NotificationManager } from '../../../components/common/react-notifications';
+import PastCampaigns from '../../../components/campaigns/PastCampaigns';
 
 const Start = ({ match, filters, user, twitterUser }) => {
-  const [activeTab, setActiveTab] = useState('new');
+  const [activeTab, setActiveTab] = useState('past');
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
@@ -35,6 +36,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
   const [twitterHandle, setTwitterHandle] = useState('');
   const [testSendLoading, setTestSendLoading] = useState(false);
   const [campaignModal, setCampaignModal] = useState(false);
+  const [selectedCampaign, setSelectedCampaign] = useState('');
 
   // compose dm props
   const [linkCheck, setLinkCheck] = useState(false);
@@ -353,7 +355,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
                               <Button
                                 color="primary"
                                 onClick={handleCampaignStart}
-                                disabled={true}
+                                // disabled={true}
                               >
                                 Start
                               </Button>{' '}
@@ -378,7 +380,11 @@ const Start = ({ match, filters, user, twitterUser }) => {
               </Row> */}
             </TabPane>
             <TabPane tabId="past">
-              <p>Past Campaigns</p>
+              <PastCampaigns
+                campaignId={selectedCampaign}
+                setCampaignId={setSelectedCampaign}
+                uid={user}
+              />
             </TabPane>
           </TabContent>
         </Colxx>

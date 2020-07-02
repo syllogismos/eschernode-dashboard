@@ -13,6 +13,8 @@ import {
   DropdownMenu,
 } from 'reactstrap';
 
+import { dashboardPath } from '../../constants/defaultValues';
+
 const dropdownOptions = ['Subscribe', 'Custom'];
 const ComposeDM = ({
   dm,
@@ -41,7 +43,7 @@ const ComposeDM = ({
   useEffect(() => {
     switch (selectedDropdown) {
       case 'Subscribe':
-        setURL(`http://eschernode.com/subscribe/${screenName}`);
+        setURL(`${dashboardPath}subscribe/${screenName}`);
         break;
       case 'Custom':
         setURL('');
