@@ -27,7 +27,7 @@ import { NotificationManager } from '../../../components/common/react-notificati
 import PastCampaigns from '../../../components/campaigns/PastCampaigns';
 
 const Start = ({ match, filters, user, twitterUser }) => {
-  const [activeTab, setActiveTab] = useState('past');
+  const [activeTab, setActiveTab] = useState('new');
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
@@ -150,6 +150,7 @@ const Start = ({ match, filters, user, twitterUser }) => {
     axios(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        setSelectedCampaign(response.data.campaign);
       })
       .catch((err) => {
         console.log(err);

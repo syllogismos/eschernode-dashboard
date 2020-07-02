@@ -28,6 +28,7 @@ const ComposeDM = ({
   url,
   setURL,
   screenName,
+  disabled = false,
 }) => {
   // const [linkCheck, setLinkCheck] = useState(false);
   // const [selectedDropdown, setSelectedDropdown] = useState('Escher');
@@ -41,31 +42,36 @@ const ComposeDM = ({
   }
 
   useEffect(() => {
-    switch (selectedDropdown) {
-      case 'Subscribe':
-        setURL(`${dashboardPath}subscribe/${screenName}`);
-        break;
-      case 'Custom':
-        setURL('');
-        break;
-      default:
-        break;
+    if (!disabled) {
+      switch (selectedDropdown) {
+        case 'Subscribe':
+          setURL(`${dashboardPath}subscribe/${screenName}`);
+          break;
+        case 'Custom':
+          setURL('');
+          break;
+        default:
+          break;
+      }
     }
-  }, [selectedDropdown, setURL]);
+  }, [selectedDropdown, setURL, disabled]);
 
   useEffect(() => {
-    setDM(linkCheck ? `${text} ${url}` : text);
+    if (!disabled) {
+      setDM(linkCheck ? `${text} ${url}` : text);
+    }
   }, [text, url, linkCheck, setDM]);
 
   return (
     <>
       <Card>
         <CardBody>
-          <CardTitle>Compose DM</CardTitle>
+          <CardTitle>{disabled ? 'Message' : 'Compose DM'}</CardTitle>
           <InputGroup className="mb-3">
             <InputGroupAddon addonType="prepend">Text</InputGroupAddon>
             <Input
               type="textarea"
+              disabled={disabled}
               name="text"
               value={text}
               onChange={handleTextChange}
@@ -76,14 +82,19 @@ const ComposeDM = ({
             <InputGroupAddon addonType="prepend">
               <InputGroupText>
                 <Input
+                  disabled={disabled}
                   addon
                   type="checkbox"
                   aria-label="Checkbox for following text input"
-                  onChange={() => setLinkCheck((l) => !l)}
+                  checked={linkCheck}
+                  onClick={() => setLinkCheck((l) => !l)}
                 />
               </InputGroupText>
             </InputGroupAddon>
-            <UncontrolledDropdown addonType="prepend" disabled={!linkCheck}>
+            <UncontrolledDropdown
+              addonType="prepend"
+              disabled={disabled || !linkCheck}
+            >
               <DropdownToggle caret outline color="primary">
                 {selectedDropdown}
               </DropdownToggle>

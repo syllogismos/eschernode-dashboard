@@ -7,7 +7,7 @@ import { Colxx } from '../common/CustomBootstrap';
 const CampaignListView = ({ campaign, setCampaignId, selectedCampaignId }) => {
   const onClickHandler = () => {
     console.log(campaign.cid);
-    setCampaignId(campaign.cid);
+    setCampaignId(campaign);
     console.log(campaign.cid === selectedCampaignId);
     console.log(selectedCampaignId);
   };
@@ -16,7 +16,7 @@ const CampaignListView = ({ campaign, setCampaignId, selectedCampaignId }) => {
       <Colxx xxs="12" className="mb-1" key={campaign.cid}>
         <Card
           className={classnames('d-flex flex-row', {
-            active: campaign.cid === selectedCampaignId,
+            active: campaign.cid === selectedCampaignId.cid,
           })}
           onClick={onClickHandler}
         >
