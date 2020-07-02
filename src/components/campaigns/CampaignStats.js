@@ -63,7 +63,7 @@ const CampaignStats = ({ campaign, uid }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response);
+        console.log(response.data.es_response);
         setDms(response.data.es_response.hits.total.value);
       })
       .catch((err) => {
@@ -86,7 +86,7 @@ const CampaignStats = ({ campaign, uid }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response);
+        console.log(response.data.es_response);
         setClicks(response.data.es_response.hits.total.value);
       })
       .catch((err) => {
@@ -109,7 +109,7 @@ const CampaignStats = ({ campaign, uid }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response);
+        console.log(response.data.es_response);
         setConversions(response.data.es_response.hits.total.value);
       })
       .catch((err) => {
