@@ -2,7 +2,8 @@ import React from 'react';
 import { Row } from 'reactstrap';
 import ReactGA from 'react-ga';
 import JumbotronUi from '../components/landing/jumbotron';
-import { Colxx } from '../components/common/CustomBootstrap';
+import Features from '../components/landing/features';
+import { Colxx, Separator } from '../components/common/CustomBootstrap';
 import Footer from '../containers/navs/Footer';
 
 const Landing = () => {
@@ -27,6 +28,12 @@ const Landing = () => {
           <Row>
             <Colxx xxs="12">
               <JumbotronUi />
+            </Colxx>
+          </Row>
+
+          <Row>
+            <Colxx xxs="12">
+              <Features />
             </Colxx>
           </Row>
         </main>
