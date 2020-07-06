@@ -26,12 +26,18 @@ const Click = ({ location }) => {
   };
   try {
     axios(config)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
-
-    urlparams.u
-      ? (window.location.href = decodeURIComponent(urlparams.u))
-      : console.log('no url');
+      .then((response) => {
+        console.log(response);
+        urlparams.u
+          ? (window.location.href = decodeURIComponent(urlparams.u))
+          : console.log('no url');
+      })
+      .catch((err) => {
+        console.log(err);
+        urlparams.u
+          ? (window.location.href = decodeURIComponent(urlparams.u))
+          : console.log('no url');
+      });
   } catch {
     console.log('on click');
   }
@@ -41,9 +47,7 @@ const Click = ({ location }) => {
         id="app-container"
         className="menu-sub-hidden main-hidden sub-hidden"
       >
-        <main>
-          <Redirect to="/app" />
-        </main>
+        <main>{/* <Redirect to="/app" /> */}</main>
         {/* <Footer className="menu-sub-hidden main-hidden sub-hidden" /> */}
       </div>
     </>
