@@ -32,7 +32,7 @@ const Start = ({ match, twitterUser, user }) => {
     const data = JSON.stringify({
       uid: user,
       query,
-      index: 'followers*',
+      index: 'followers',
     });
     const config = {
       method: 'post',

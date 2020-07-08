@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Row, Card, CardBody } from 'reactstrap';
 import axios from 'axios';
+// import moment from 'moment';
 import IconCard from '../cards/IconCard';
 import { Colxx } from '../common/CustomBootstrap';
 import { servicePath } from '../../constants/defaultValues';
+import { TimeSeriesChart } from '../charts';
 
 const dmsQuery = (cid) => {
   return {
@@ -13,7 +15,14 @@ const dmsQuery = (cid) => {
         campaign: cid,
       },
     },
-    size: 0,
+    size: 1000,
+    sort: [
+      {
+        t: {
+          order: 'asc',
+        },
+      },
+    ],
   };
 };
 
@@ -24,7 +33,14 @@ const clickquery = (cid) => {
         c: cid,
       },
     },
-    size: 0,
+    size: 1000,
+    sort: [
+      {
+        t: {
+          order: 'asc',
+        },
+      },
+    ],
   };
 };
 
@@ -35,7 +51,14 @@ const conversionquery = (cid) => {
         c: cid,
       },
     },
-    size: 0,
+    size: 1000,
+    sort: [
+      {
+        t: {
+          order: 'asc',
+        },
+      },
+    ],
   };
 };
 
@@ -45,8 +68,11 @@ const conversionIndex = 'conversion*';
 
 const CampaignStats = ({ campaign, uid }) => {
   const [clicks, setClicks] = useState(0);
+  const [clickData, setClickData] = useState([]);
   const [conversions, setConversions] = useState(0);
+  const [conversionData, setConversionData] = useState([]);
   const [dms, setDms] = useState(0);
+  const [dmsData, setDmsData] = useState([]);
   useEffect(() => {
     const data = JSON.stringify({
       index: dmsIndex,
@@ -65,11 +91,12 @@ const CampaignStats = ({ campaign, uid }) => {
       .then((response) => {
         console.log(response.data.es_response);
         setDms(response.data.es_response.hits.total.value);
+        setDmsData(response.data.es_response.hits.hits);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [campaign]);
+  }, [campaign, uid]);
   useEffect(() => {
     const data = JSON.stringify({
       index: clickIndex,
@@ -88,11 +115,12 @@ const CampaignStats = ({ campaign, uid }) => {
       .then((response) => {
         console.log(response.data.es_response);
         setClicks(response.data.es_response.hits.total.value);
+        setClickData(response.data.es_response.hits.hits);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [campaign]);
+  }, [campaign, uid]);
   useEffect(() => {
     const data = JSON.stringify({
       index: conversionIndex,
@@ -111,11 +139,12 @@ const CampaignStats = ({ campaign, uid }) => {
       .then((response) => {
         console.log(response.data.es_response);
         setConversions(response.data.es_response.hits.total.value);
+        setConversionData(response.data.es_response.hits.hits);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [campaign]);
+  }, [campaign, uid]);
   return (
     <>
       <Card>
@@ -146,6 +175,21 @@ const CampaignStats = ({ campaign, uid }) => {
                 value={conversions}
               />
             </Colxx>
+          </Row>
+          <Row>
+            <TimeSeriesChart
+              data={{
+                clicks: clickData.map((d, i) => {
+                  return { x: d._source.t, y: i };
+                }),
+                conversions: conversionData.map((d, i) => {
+                  return { x: d._source.t, y: i };
+                }),
+                dms: dmsData.map((d, i) => {
+                  return { x: d._source.t, y: i };
+                }),
+              }}
+            />
           </Row>
         </CardBody>
       </Card>

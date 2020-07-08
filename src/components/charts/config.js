@@ -313,3 +313,89 @@ export const smallLineChartOptions = {
     ],
   },
 };
+
+export const TimeseriesLineChartOptions = {
+  animation: {
+    duration: 0,
+  },
+  scales: {
+    xAxes: [
+      {
+        type: 'time',
+        distribution: 'series',
+        offset: true,
+        ticks: {
+          major: {
+            enabled: true,
+            fontStyle: 'bold',
+          },
+          source: 'data',
+          autoSkip: true,
+          autoSkipPadding: 75,
+          maxRotation: 0,
+          sampleSize: 100,
+        },
+        // afterBuildTicks(scale, ticks) {
+        //   const majorUnit = scale._majorUnit;
+        //   const firstTick = ticks[0];
+        //   let i;
+        //   let ilen;
+        //   let val;
+        //   let tick;
+        //   let currMajor;
+        //   let lastMajor;
+
+        //   val = moment(ticks[0].value);
+        //   if (
+        //     (majorUnit === 'minute' && val.second() === 0) ||
+        //     (majorUnit === 'hour' && val.minute() === 0) ||
+        //     (majorUnit === 'day' && val.hour() === 9) ||
+        //     (majorUnit === 'month' &&
+        //       val.date() <= 3 &&
+        //       val.isoWeekday() === 1) ||
+        //     (majorUnit === 'year' && val.month() === 0)
+        //   ) {
+        //     firstTick.major = true;
+        //   } else {
+        //     firstTick.major = false;
+        //   }
+        //   lastMajor = val.get(majorUnit);
+
+        //   for (i = 1, ilen = ticks.length; i < ilen; i += 1) {
+        //     tick = ticks[i];
+        //     val = moment(tick.value);
+        //     currMajor = val.get(majorUnit);
+        //     tick.major = currMajor !== lastMajor;
+        //     lastMajor = currMajor;
+        //   }
+        //   return ticks;
+        // },
+      },
+    ],
+    yAxes: [
+      {
+        gridLines: {
+          drawBorder: false,
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Closing price ($)',
+        },
+      },
+    ],
+  },
+  tooltips: {
+    intersect: false,
+    mode: 'index',
+    callbacks: {
+      label(tooltipItem, myData) {
+        let label = myData.datasets[tooltipItem.datasetIndex].label || '';
+        if (label) {
+          label += ': ';
+        }
+        label += parseFloat(tooltipItem.value).toFixed(2);
+        return label;
+      },
+    },
+  },
+};

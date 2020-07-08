@@ -138,9 +138,21 @@ const KeysContainer = (props) => {
     <>
       <Card className="mb-4">
         <CardBody>
-          <CardTitle>Twitter Secret Keys</CardTitle>
-
-          <Formik initialValues={initialValues} onSubmit={handleUpdate}>
+          <CardTitle>Click here to enable Filtering your Followers</CardTitle>
+          <Button
+            type="button"
+            size="lg"
+            disabled={
+              loading || userDetails.index_status.indexOf('indexing') !== -1
+            }
+            className="mr-2"
+            onClick={handleStartIndexing}
+          >
+            {userDetails.index_status.indexOf('indexing') !== -1
+              ? 'Indexing Followers'
+              : 'Start Indexing Followers'}
+          </Button>
+          {/* <Formik initialValues={initialValues} onSubmit={handleUpdate}>
             {({ errors, touched }) => (
               <Form className="av-tooltip tooltip-label-bottom">
                 <FormGroup className="form-group has-float-label">
@@ -202,20 +214,10 @@ const KeysContainer = (props) => {
                   </span>
                   <span className="label">Update</span>
                 </Button>
-                <Button
-                  type="button"
-                  size="lg"
-                  disabled={loading || userDetails.index_status === 'indexing'}
-                  className="mr-2"
-                  onClick={handleStartIndexing}
-                >
-                  {userDetails.index_status === 'indexing'
-                    ? 'Indexing Followers'
-                    : 'Start Indexing Followers'}
-                </Button>
+                
               </Form>
             )}
-          </Formik>
+          </Formik> */}
         </CardBody>
       </Card>
     </>

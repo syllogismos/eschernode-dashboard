@@ -7,6 +7,7 @@ import PolarAreaChart from './PolarArea';
 import RadarChart from './Radar';
 import ScatterChart from './Scatter';
 import SmallLineChart from './SmallLine';
+import TimeSeriesChart from './TimeSeries';
 
 export {
   AreaChart,
@@ -18,4 +19,5 @@ export {
   RadarChart,
   ScatterChart,
   SmallLineChart,
+  TimeSeriesChart,
 };
