@@ -8,12 +8,12 @@ import {
 } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import './helpers/Firebase';
+import ReactGA from 'react-ga';
 import AppLocale from './lang';
 import ColorSwitcher from './components/common/ColorSwitcher';
 import { NotificationContainer } from './components/common/react-notifications';
 import { isMultiColorActive, isDemo } from './constants/defaultValues';
 import { getDirection } from './helpers/Utils';
-import ReactGA from 'react-ga';
 
 function initializeReactGA() {
   ReactGA.initialize('UA-171066872-1');
