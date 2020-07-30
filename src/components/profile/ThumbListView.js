@@ -4,11 +4,12 @@ import classnames from 'classnames';
 import { Colxx } from '../common/CustomBootstrap';
 
 const ThumbListView = ({ profile }) => {
-  const profileImageURL = profile._source.profile_image_url_https.replace(
-    'normal',
-    '400x400'
-  );
-  const profileUrl = `https://twitter.com/${profile._source.screen_name}`;
+  const profileImageURL = profile._source.profile_image_url_https
+    ? profile._source.profile_image_url_https.replace('normal', '400x400')
+    : '';
+  const profileUrl = profile._source.screen_name
+    ? `https://twitter.com/${profile._source.screen_name}`
+    : '';
   return (
     <Colxx xxs="12" className="mb-1" key={profile._id}>
       <Card className={classnames('d-flex flex-row', { active: true })}>
@@ -25,20 +26,29 @@ const ThumbListView = ({ profile }) => {
           <div className="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
             <div className="w-15 w-sm-100">
               <p className="list-item-heading mb-1 truncate">
-                {profile._source.name}
+                {profile._source.name ? profile._source.name : ''}
               </p>
             </div>
             <p className="mb-1 text-muted text-small w-15 w-sm-100">
-              {profile._source.location}
+              {profile._source.location ? profile._source.location : ''}
             </p>
             <p className="mb-1 text-muted text-small w-15 w-sm-100">
-              {profile._source.followers_count} followers
+              {profile._source.followers_count
+                ? profile._source.followers_count
+                : ''}{' '}
+              followers
             </p>
             <p className="mb-1 text-muted text-small w-15 w-sm-100">
-              {profile._source.friends_count} friends
+              {profile._source.friends_count
+                ? profile._source.friends_count
+                : ''}{' '}
+              friends
             </p>
             <p className="mb-1 text-muted text-small w-15 w-sm-100">
-              {profile._source.statuses_count} tweets
+              {profile._source.statuses_count
+                ? profile._source.statuses_count
+                : ''}{' '}
+              tweets
             </p>
             <div className="w-15 w-sm-100">
               <Badge

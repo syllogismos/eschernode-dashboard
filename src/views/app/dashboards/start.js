@@ -24,8 +24,15 @@ const Start = ({ match, twitterUser, user }) => {
       _source: sourceFields,
       size: 30,
       query: {
-        term: {
-          escher_account: twitterUser.additionalUserInfo.profile.id_str,
+        bool: {
+          must: [
+            {
+              term: {
+                escher_account: twitterUser.additionalUserInfo.profile.id_str,
+              },
+            },
+            { exists: { field: 'profile_image_url_https' } },
+          ],
         },
       },
     };
