@@ -1,3 +1,20 @@
+# Introduction
+
+Messaging Automation for Twitter Followers
+
+React Frontend for a twitter export tool. User auth based on firebase. React, Redux, Redux-Saga, Firebase
+
+[Backend](https://github.com/syllogismos/eschernode-backend) thats built on django, python, elasticsearch, rabbit-mq, Tweepy, nginx, gunicorn, pm2
+
+Filters Your followers
+![](https://eschernode.com/assets/eschernode/filters1.png)
+Compose Direct Message, and start a Campaign
+![](https://eschernode.com/assets/eschernode/campaign1.png)
+Track link clicks, conversions of a campaign
+![](https://eschernode.com/assets/eschernode/stats.png)
+
+# Support Notes
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
