@@ -128,7 +128,7 @@ const FilterParseComponent = ({ filter }) => {
             };
         }
       case 'flag':
-        switch (filter.flagCondition) {
+        switch (filter.flagCondition.value) {
           case 'is':
             switch (filter.flagOption.value) {
               case 'verified':
